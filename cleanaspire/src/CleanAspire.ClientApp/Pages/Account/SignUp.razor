@@ -1,0 +1,111 @@
+﻿@page "/account/signup"
+
+@using System.ComponentModel.DataAnnotations
+@using CleanAspire.ClientApp.Components.Autocompletes
+
+
+<PageTitle>@L["Signup"]</PageTitle>
+<MudPaper Elevation="3" Class="pa-8" Width="100%" MaxWidth="500px">
+    <div class="d-flex flex-row  align-center gap-3 my-3">
+        <MudBlazorLogo Style="with:60px;height:60px"></MudBlazorLogo>
+        <MudText Typo="Typo.h5">@L["Create an Account"]</MudText>
+    </div>
+    <div class="d-flex flex-column gap-2">
+        <div class="d-flex flex-row gap-1">
+            <MudText>@L["Have an account?"]</MudText> <MudLink Href="/account/signin">@L["Sign In"]</MudLink>
+        </div>
+        <EditForm Model="@model" OnValidSubmit="OnValidSubmit">
+            <DataAnnotationsValidator />
+            <div class="d-flex flex-column gap-2">
+                <MultiTenantAutocomplete T="TenantDto" For="(()=>model.Tenant)"
+                Placeholder="@L["Organization"]"
+                Label="@L["Select Organization"]"
+                Required="true"
+                RequiredError="@L["Organization selection is required"]"
+                @bind-Value="@model.Tenant">
+
+                </MultiTenantAutocomplete>
+                <MudTextField @bind-Value="model.Email" For="@(() => model.Email)" Label="@L["Email"]" Placeholder="@L["Email"]" Required="true" RequiredError="@L["Email is required"]"></MudTextField>
+                <MudTextField @bind-Value="model.Nickname" For="@(() => model.Nickname)" Label="@L["Nickname"]" Placeholder="Nickname"></MudTextField>
+                <PasswordInput Field="@(() => model.Password)" @bind-Value="@model.Password"  Label="@L["Password"]" Placeholder="@L["Password"]" RequiredError="@L["Password is required"]" />
+                <PasswordInput Field="@(() => model.ConfirmPassword)" @bind-Value="@model.ConfirmPassword" Label="@L["Confirm password"]" Placeholder="@L["Confirm password"]" RequiredError="@L["Confirm password is required"]" />
+                <TimeZoneAutocomplete T="string" For="@(() => model.TimeZoneId)" @bind-Value="model.TimeZoneId" Label="@L["Time Zone"]" Placeholder="@L["Time Zone"]"></TimeZoneAutocomplete>
+                <LanguageAutocomplete T="string" For="@(() => model.LanguageCode)" @bind-Value="model.LanguageCode" Label="@L["Language"]" Placeholder="@L["Language"]"></LanguageAutocomplete>
+                <div class="d-flex flex-row align-center justify-space-between">
+                    <MudCheckBox @bind-Value="model.CheckPrivacy" For="@(() => model.CheckPrivacy)">@L["I agree to the terms and privacy"]</MudCheckBox>
+                </div>
+                <MudButton Disabled="@waiting" ButtonType="ButtonType.Submit" Color="Color.Primary">@L["Signup"]</MudButton>
+            </div>
+        </EditForm>
+    </div>
+
+</MudPaper>
+@code {
+    private bool waiting = false;
+    private SignupModel model = new();
+    private TenantDto tenantDto = new();
+    private async Task OnValidSubmit(EditContext context)
+    {
+        var online = await OnlineStatusInterop.GetOnlineStatusAsync();
+        if (!online)
+        {
+            Snackbar.Add(L["You are offline. Please check your internet connection."], Severity.Error);
+            return;
+        }
+        waiting = true;
+        var result = await ApiClientServiceProxy.ExecuteAsync(async () =>
+        {
+            await ApiClient.Account.Signup.PostAsync(new SignupRequest() { Email = model.Email, Password = model.Password, LanguageCode = model.LanguageCode, Nickname = model.Nickname, Provider = model.Provider, TimeZoneId = model.TimeZoneId, TenantId = model.Tenant?.Id });
+            return true;
+            });
+        result.Switch(
+            ok =>
+            {
+                Snackbar.Add(L["Account created successfully. Please check your email to verify your account."], Severity.Success);
+                Navigation.NavigateTo("/account/signupsuccessful");
+                waiting = false;
+            },
+            invalid =>
+            {
+                Snackbar.Add(L[invalid.Detail ?? "Failed validation"], Severity.Error);
+                waiting = false;
+            },
+            error =>
+            {
+                Snackbar.Add(error.Message, Severity.Error);
+                waiting = false;
+            });
+    }
+ 
+    public class SignupModel
+    {
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; } = string.Empty;
+        [Required]
+        [StringLength(30, ErrorMessage = "Password must be at least 6 characters long.", MinimumLength = 6)]
+        [RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d)(?=.*[\W_]).{6,}$", ErrorMessage = "Password must be at least 6 characters long and contain at least one letter, one number, and one special character.")]
+        public string Password { get; set; } = string.Empty;
+        [Required]
+        [Compare(nameof(Password))]
+        public string ConfirmPassword { get; set; } = string.Empty;
+        [Range(typeof(bool), "true", "true", ErrorMessage = "You must accept the privacy policy.")]
+        public bool CheckPrivacy { get; set; }
+        [RegularExpression("^[a-zA-Z0-9_]*$", ErrorMessage = "Nickname can only contain letters, numbers, and underscores.")]
+        [MaxLength(50, ErrorMessage = "Nickname cannot exceed 50 characters.")]
+        public string? Nickname { get; set; }
+        [MaxLength(50, ErrorMessage = "TimeZoneId cannot exceed 50 characters.")]
+        public string? TimeZoneId { get; set; }
+
+        [MaxLength(10, ErrorMessage = "LanguageCode cannot exceed 10 characters.")]
+        [RegularExpression("^[a-z]{2,3}(-[A-Z]{2})?$", ErrorMessage = "Invalid language code format.")]
+        public string? LanguageCode { get; set; }
+        [MaxLength(50, ErrorMessage = "Nickname cannot exceed 50 characters.")]
+        public string? SuperiorId { get; init; }
+        [Required]
+        public TenantDto? Tenant { get; set; }
+
+        [MaxLength(20, ErrorMessage = "Provider cannot exceed 20 characters.")]
+        public string? Provider { get; set; } = "Local";
+    }
+}

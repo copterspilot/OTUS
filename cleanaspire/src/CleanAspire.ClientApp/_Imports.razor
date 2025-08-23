@@ -1,0 +1,40 @@
+﻿@using System.Net.Http
+@using System.Net.Http.Json
+@using System.Globalization
+@using CleanAspire.Api.Client
+@using CleanAspire.Api.Client.Models
+@using CleanAspire.ClientApp
+@using CleanAspire.ClientApp.Components
+@using CleanAspire.ClientApp.Configurations
+@using CleanAspire.ClientApp.Layout
+@using CleanAspire.ClientApp.Services
+@using CleanAspire.ClientApp.Services.Identity
+@using CleanAspire.ClientApp.Services.Interfaces
+@using CleanAspire.ClientApp.Services.JsInterop
+@using CleanAspire.ClientApp.Services.PushNotifications
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@using Microsoft.AspNetCore.Components.WebAssembly.Http
+@using Microsoft.Extensions.Localization
+@using Microsoft.JSInterop
+@using Microsoft.Kiota.Abstractions
+@using MudBlazor
+
+
+@inject IJSRuntime JS
+@inject NavigationManager Navigation
+@inject ClientAppSettings AppSettings
+@inject ISnackbar Snackbar
+@inject IDialogService DialogService
+@inject DialogServiceHelper DialogServiceHelper
+@inject IStringLocalizer<App> L
+@inject ILogger<App> Logger
+@inject ApiClient ApiClient
+@inject ApiClientServiceProxy ApiClientServiceProxy
+@inject UserProfileStore UserProfileStore
+@inject IWebpushrService WebpushrService
+@inject OnlineStatusInterop OnlineStatusInterop
+@inject OfflineModeState OfflineModeState

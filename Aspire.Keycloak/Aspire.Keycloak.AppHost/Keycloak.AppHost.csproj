@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.4.1" />
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>d9747d0c-b8d3-4ee6-8453-e90d6b42c104</UserSecretsId>
+    <RootNamespace>Keycloak.AppHost</RootNamespace>
+    <AssemblyName>Keycloak.AppHost</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Aspire.Keycloak.ApiService\Keycloak.ApiService.csproj" />
+    <ProjectReference Include="..\Aspire.Keycloak.Web\Keycloak.Web.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" />
+    <PackageReference Include="Aspire.Hosting.Keycloak" />
+    <PackageReference Include="Aspire.Hosting.Valkey" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+    <PackageReference Include="Microsoft.Extensions.Options" />
+    <PackageReference Include="VaultSharp" />
+    <PackageReference Include="VaultSharp.Extensions.Configuration" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,24 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/CleanAspire.Api/CleanAspire.Api.csproj" />
+    <Project Path="src/CleanAspire.AppHost/CleanAspire.AppHost.csproj" />
+    <Project Path="src/CleanAspire.Application/CleanAspire.Application.csproj" />
+    <Project Path="src/CleanAspire.ClientApp/CleanAspire.ClientApp.csproj" />
+    <Project Path="src/CleanAspire.Domain/CleanAspire.Domain.csproj" />
+    <Project Path="src/CleanAspire.Infrastructure/CleanAspire.Infrastructure.csproj" />
+    <Project Path="src/CleanAspire.ServiceDefaults/CleanAspire.ServiceDefaults.csproj" />
+    <Project Path="src/CleanAspire.WebApp/CleanAspire.WebApp.csproj" />
+  </Folder>
+  <Folder Name="/src/Migrators/" Id="44da19c8-5b9b-6524-cf69-55296739ffa1">
+    <Project Path="src/Migrators/Migrators.MSSQL/Migrators.MSSQL.csproj" />
+    <Project Path="src/Migrators/Migrators.PostgreSQL/Migrators.PostgreSQL.csproj" />
+    <Project Path="src/Migrators/Migrators.SQLite/Migrators.SQLite.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/CleanAspire.Tests/CleanAspire.Tests.csproj" />
+  </Folder>
+</Solution>

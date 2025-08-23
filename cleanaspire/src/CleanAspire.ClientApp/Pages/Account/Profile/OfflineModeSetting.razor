@@ -1,0 +1,52 @@
+﻿
+@inject OfflineModeState OfflineModeState
+<div class="d-flex flex-column gap-2">
+    <MudText Typo="Typo.h4">@L["Offline Mode"]</MudText>
+    <MudDivider />
+    <MudAlert Severity="Severity.Warning">
+        @L["Enabling offline mode stores certain data locally to ensure secure authentication and continued access when an internet connection is unavailable. However, local data storage may increase the risk of data breaches if your device is compromised. Please ensure your device is secure to mitigate this risk."]
+    </MudAlert>
+    <MudText>
+        @L["Offline mode allows access to essential features without requiring an internet connection, which is particularly useful in areas with limited or no connectivity."]
+    </MudText>
+    <MudCard Class="mt-4">
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h5">@L["Enable Offline Mode"]</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent>
+            <MudText Typo="Typo.body2" Class="mud-text-secondary">
+                @L["Activating offline mode grants access to critical features and data without the need for an active internet connection. This feature is ideal for environments where connectivity is unreliable or unavailable. Ensure your device is secure to prevent potential data risks."]
+            </MudText>
+            <div class="d-flex flex-row justify-content-between align-items-center mt-3">
+                <MudText Typo="Typo.body1" Color="Color.Primary">
+                    @L["Enable Offline Mode"]
+                </MudText>
+                <MudSwitch T="bool" Value="@OfflineModeState.Enabled" Color="Color.Primary" ValueChanged="ValueChanged" />
+            </div>
+        </MudCardContent>
+    </MudCard>
+</div>
+@code{
+    protected override Task OnInitializedAsync()
+    {
+        OfflineModeState.OnChange += UpdateStatus;
+        return base.OnInitializedAsync();
+    }
+    private async Task ValueChanged(bool value)
+    {
+        await OfflineModeState.SetOfflineModeAsync(value);
+    }
+    private async Task UpdateStatus()
+    {
+        await InvokeAsync(StateHasChanged);
+        
+    }
+    public ValueTask DisposeAsync()
+    {
+        // Unsubscribe from events and dispose of resources
+        OfflineModeState.OnChange -= UpdateStatus;
+        return ValueTask.CompletedTask;
+    }
+}

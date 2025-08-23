@@ -1,0 +1,224 @@
+﻿@using Net.Codecrete.QrCodeGenerator
+<div class="d-flex flex-column gap-2">
+    <MudText Typo="Typo.h4">@L["Two-factor authentication"]</MudText>
+    <MudDivider />
+    <MudAlert Severity="Severity.Info">
+        @L["For enhanced security, two-factor authentication will be required for your account. This helps protect your account with an additional layer of security."]
+    </MudAlert>
+    <MudText>@L["Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to sign in. Learn more about two-factor authentication."]</MudText>
+    <MudCard Class="mt-4">
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h5">@L["Two-factor methods"]</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent>
+            <MudList T="string">
+                <MudListItem>
+                    <div class="d-flex flex-row justify-space-between align-content-center">
+                        <div>
+                            <div class="d-flex flex-row gap-2">
+                                <MudIcon Icon="@Icons.Material.Filled.Phone"></MudIcon>  <MudText Color="Color.Primary">@L["Authenticator app"]</MudText>
+                            </div>
+                            <MudText Typo="Typo.body2" Class="mud-text-secondary">@L["Use an authentication app or browser extension to get two-factor authentication codes when prompted."]</MudText>
+                            @if (UserProfileStore.Profile?.IsTwoFactorEnabled ?? false)
+                            {
+                                <div class="d-flex flex-row gap-2 align-content-center align-center">
+                                    <MudIcon Color="Color.Success" Icon="@Icons.Material.Filled.CheckCircle"> </MudIcon>
+                                    <MudText Typo="Typo.body2" Class="mud-text-secondary">  @L["To disable, click here."] </MudText>
+                                    <MudButton Color="Color.Primary" OnClick="Disable2fa"><MudText>@L["Disable"]</MudText></MudButton>
+                                </div>
+                            }
+                        </div>
+                        <MudSwitch T="bool" Value="@(UserProfileStore.Profile?.IsTwoFactorEnabled??false)" ReadOnly="@(UserProfileStore.Profile?.IsTwoFactorEnabled??false)" ValueChanged="AuthenticatorAppValueChanged" Color="Color.Primary" />
+                    </div>
+                </MudListItem>
+                <MudListItem>
+                    <div class="d-flex flex-row justify-space-between align-content-center">
+                        <div>
+                            <div class="d-flex flex-row gap-2">
+                                <MudIcon Icon="@Icons.Material.Filled.Security"></MudIcon>
+                                <MudText Color="Color.Primary">@L["Recovery codes"]</MudText>
+                            </div>
+                            <MudText Typo="Typo.body2" Class="mud-text-secondary">
+                                @L["Generate recovery codes to regain access if you lose your two-factor authentication device."]
+                            </MudText>
+
+                            @if (recoveryCodes != null && recoveryCodes.Any())
+                            {
+                                <MudAlert Severity="Severity.Info">
+                                    @L["Important: Recovery codes are shown only once and will not be stored on the server. Please save them securely."]
+                                </MudAlert>
+                                <div class="d-flex flex-column gap-2 align-content-center align-center">
+                                    <MudText Typo="Typo.body2" Class="mud-text-secondary">
+                                        @L["Recovery codes generated. Save them securely as they will not be shown again."]
+                                    </MudText>
+                                    <div class="grid-2-columns">
+                                        @foreach (var recoveryCode in recoveryCodes)
+                                        {
+                                            <MudChip Size="Size.Small" Color="Color.Dark">@recoveryCode</MudChip>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                            <div class="d-flex flex-row gap-2">
+                                <MudButton Color="Color.Primary" Disabled="@(!UserProfileStore.Profile?.IsTwoFactorEnabled??false)" OnClick="GenerateRecoveryCodes">
+                                    <MudText>@L["Generate Codes"]</MudText>
+                                </MudButton>
+                                @if (recoveryCodes != null && recoveryCodes.Any())
+                                {
+                                    <MudButton Color="Color.Secondary" OnClick="@CopyToClipboard">
+                                        <MudText>@L["Copy Codes to Clipboard"]</MudText>
+                                    </MudButton>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                </MudListItem>
+            </MudList>
+        </MudCardContent>
+    </MudCard>
+</div>
+<MudDialog @bind-Visible="_showConfigureAuthenticatorAppDialog" Options="dialogOptions">
+    <TitleContent>
+        <MudText Typo="Typo.h6">
+            <MudIcon Icon="@Icons.Material.Filled.QrCode2" Class="mr-3" Size="Size.Small" /> @L["Configure Authenticator App"]
+        </MudText>
+    </TitleContent>
+    <DialogContent>
+        <div class="d-flex flex-column gap-3">
+            <MudText Typo="Typo.subtitle2">@L["To use an authenticator app go through the following steps:"]</MudText>
+            <MudText Typo="Typo.body1">
+                1. Download a two-factor authenticator app like Microsoft Authenticator for
+                <a href="https://go.microsoft.com/fwlink/?Linkid=825072">Android</a> and
+                <a href="https://go.microsoft.com/fwlink/?Linkid=825073">iOS</a> or
+                Google Authenticator for
+                <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en">Android</a> and
+                <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">iOS</a>.
+            </MudText>
+            <MudText Typo="Typo.body1">
+                2. Scan the QR Code or enter this key <kbd>@sharedKey</kbd> into your two factor authenticator app. Spaces and casing do not matter.<p></p>
+                @if (qrCode != null)
+                {
+                    <div style="width:180px;height:180px">@((MarkupString)qrCode)</div>
+                }
+            </MudText>
+            <MudText Typo="Typo.body1">
+                3. Once you have scanned the QR code or input the key above, your two factor authentication app will provide you
+                with a unique code. Enter the code in the confirmation box below.
+            </MudText>
+
+            <MudTextField T="string" MaxLength="6" Label="@L["Verification Code"]" @bind-Value="verificationCode"></MudTextField>
+        </div>
+    </DialogContent>
+    <DialogActions>
+        <MudButton Color="Color.Primary" OnClick="Verify">@L["Verify"]</MudButton>
+        <MudButton Color="Color.Default" OnClick="Close">@L["Close"]</MudButton>
+    </DialogActions>
+</MudDialog>
+@code {
+
+    private DialogOptions dialogOptions = new() { MaxWidth = MaxWidth.Small, CloseOnEscapeKey = true, CloseButton = true };
+    private bool _showConfigureAuthenticatorAppDialog;
+    private string? qrCode;
+    private string? verificationCode;
+    private string sharedKey = "123456";
+    private string authenticatorUri = "otpauth://totp/CleanAspire?secret";
+    private List<string>? recoveryCodes;
+    public async Task Disable2fa()
+    {
+        try
+        {
+            await ApiClient.Account.Disable2fa.GetAsync();
+            var profile = UserProfileStore.Profile;
+            profile.IsTwoFactorEnabled = false;
+            UserProfileStore.Set(profile);
+            Snackbar.Add(L["Two-factor authentication has been disabled successfully"], Severity.Success);
+        }
+        catch (ProblemDetails e)
+        {
+            Snackbar.Add(e.Detail, Severity.Error);
+        }
+        catch (ApiException e)
+        {
+            Snackbar.Add(L["Failed to disable two-factor authentication"], Severity.Error);
+        }
+
+    }
+    private async Task AuthenticatorAppValueChanged(bool value)
+    {
+        if (Navigation.BaseUri == "https://cleanaspire.blazorserver.com/" && UserProfileStore.Profile.Username == "Administrator")
+        {
+            Snackbar.Add(L["Test accounts cannot enable two-factor authentication in the demo environment. Please use your own account for testing."], Severity.Info);
+            return;
+        }
+        if (value)
+        {
+            var response = await ApiClient.Account.GenerateAuthenticator.GetAsync(q => q.QueryParameters.AppName = AppSettings.AppName);
+            if (response is not null)
+            {
+                _showConfigureAuthenticatorAppDialog = true;
+                authenticatorUri = response.AuthenticatorUri;
+                sharedKey = response.SharedKey;
+                var qr = QrCode.EncodeText(response.AuthenticatorUri, QrCode.Ecc.Medium);
+                qrCode = qr.ToSvgString(4);
+            }
+        }
+    }
+    public Task Close()
+    {
+        _showConfigureAuthenticatorAppDialog = false;
+        return Task.CompletedTask;
+    }
+    public async Task Verify()
+    {
+        try
+        {
+            await ApiClient.Account.Enable2fa.PostAsync(new Enable2faRequest() { AppName = AppSettings.AppName, VerificationCode = verificationCode });
+            var profile = UserProfileStore.Profile;
+            profile.IsTwoFactorEnabled = true;
+            UserProfileStore.Set(profile);
+            _showConfigureAuthenticatorAppDialog = false;
+            Snackbar.Add(L["Two-factor authentication has been enabled successfully"], Severity.Success);
+        }
+        catch (ApiException e)
+        {
+            if (e.ResponseStatusCode == 404)
+            {
+                Snackbar.Add(L["User not found."], Severity.Error);
+            }
+            else
+            {
+                Snackbar.Add(L["Invalid verification code"], Severity.Error);
+            }
+        }
+
+    }
+    private async Task GenerateRecoveryCodes()
+    {
+        try
+        {
+            var response = await ApiClient.Account.GenerateRecoveryCodes.GetAsync();
+            recoveryCodes = response.Codes;
+            Snackbar.Add(L["Recovery codes have been generated successfully. Please save them in a safe place."], Severity.Success);
+        }
+        catch (ApiException e)
+        {
+            Snackbar.Add(L["Failed to generate recovery codes"], Severity.Error);
+        }
+    }
+    private async Task CopyToClipboard()
+    {
+        if (recoveryCodes != null && recoveryCodes.Any())
+        {
+            var codes = string.Join(Environment.NewLine, recoveryCodes);
+            await JS.InvokeVoidAsync("navigator.clipboard.writeText", codes);
+            Snackbar.Add(@L["Recovery codes copied to clipboard!"], Severity.Success);
+        }
+        else
+        {
+            Snackbar.Add(@L["No recovery codes to copy."], Severity.Warning);
+        }
+    }
+}

@@ -1,0 +1,361 @@
+﻿@page "/"
+@using System.Net.Http.Headers
+@using System.Text
+
+@using Microsoft.Kiota.Abstractions
+@inject IHttpClientFactory HttpClientFactory
+<PageTitle>@L["Home"]</PageTitle>
+
+<MudPaper Class="pa-4 mb-3">
+    <style>
+
+        .circle {
+            width: 0.5rem;
+            height: 0.5rem;
+            display: inline-block;
+        }
+
+        .rounded-circle {
+            border-radius: 50%;
+        }
+
+        .bg-success {
+            background-color: #28a745 !important;
+        }
+
+        .bg-warning {
+            background-color: #ffc107 !important;
+        }
+
+        .bg-primary {
+            background-color: #0d6efd !important;
+        }
+
+        .bg-danger {
+            background-color: #dc3545 !important;
+        }
+
+        .bg-secondary {
+            background-color: #6c757d !important;
+        }
+
+        .bg-dark {
+            background-color: #343a40 !important;
+        }
+
+        .bar-label {
+            font-size: .625rem;
+            color: #6c757d;
+        }
+
+        .text-nowrap {
+            white-space: nowrap;
+        }
+
+        .fw-semibold {
+            font-weight: 600;
+        }
+
+        .small, small {
+            font-size: .875em;
+        }
+
+        .progress {
+            background-color: #e9ecef;
+            border-radius: 0.25rem;
+            overflow: hidden;
+            height: 8px;
+            display: flex;
+        }
+
+        .progress-bar {
+            height: 100%;
+            transition: width 0.6s ease;
+        }
+
+        @@media (max-width: 850px) {
+            .flex-row {
+                flex-wrap: wrap;
+            }
+        }
+
+        .fw-bold {
+            font-weight: 700 !important;
+        }
+
+        .fs-5 {
+            font-size: 1.25rem !important;
+        }
+
+        .text-muted {
+            color: var(--mud-palette-text-secondary);
+        }
+    </style>
+    <div class="d-flex flex-row gap-3">
+        <div class="d-flex flex-column">
+            <div class="text-muted text-nowrap small">@L["Invoiced amount"]</div>
+            <div class="fs-5 fw-bold text-nowrap">1,167,986 EUR</div>
+        </div>
+        <div class="d-flex flex-column flex-grow-1 gap-3">
+            <div class="d-flex flex-row flex-grow-1">
+                <div class="d-flex flex-column justify-content-between align-center mt-2 flex-grow-1">
+                    <div class="d-flex align-center gap-2">
+                        <div class="circle bg-success rounded-circle"></div>
+                        <span class="bar-label text-nowrap">Paid in full</span>
+                    </div>
+                    <div class="text-nowrap fw-semibold small">789,238 EUR</div>
+                </div>
+                <div class="d-flex flex-column justify-content-between align-center mt-2 flex-grow-1">
+                    <div class="d-flex align-center gap-2">
+                        <div class="circle bg-primary rounded-circle"></div>
+                        <span class="bar-label text-nowrap">Awaiting payment</span>
+                    </div>
+                    <div class="text-nowrap fw-semibold small">244,900 EUR</div>
+                </div>
+                <div class="d-flex flex-column justify-content-between align-center mt-2 flex-grow-1">
+                    <div class="d-flex align-center gap-2">
+                        <div class="circle bg-warning rounded-circle"></div>
+                        <span class="bar-label text-nowrap">Overdue 1-6 days</span>
+                    </div>
+                    <div class="text-nowrap fw-semibold small">74,808 EUR</div>
+                </div>
+                <div class="d-flex flex-column justify-content-between align-center mt-2 flex-grow-1">
+                    <div class="d-flex align-center gap-2">
+                        <div class="circle bg-danger rounded-circle"></div>
+                        <span class="bar-label text-nowrap">Overdue 7-13 days</span>
+                    </div>
+                    <div class="text-nowrap fw-semibold small">32,221 EUR</div>
+                </div>
+                <div class="d-flex flex-column justify-content-between align-center mt-2 flex-grow-1">
+                    <div class="d-flex align-center gap-2">
+                        <div class="circle bg-secondary rounded-circle"></div>
+                        <span class="bar-label text-nowrap">Overdue 14-29 days</span>
+                    </div>
+                    <div class="text-nowrap fw-semibold small">17,338 EUR</div>
+                </div>
+                <div class="d-flex flex-column justify-content-between align-center mt-2 flex-grow-1">
+                    <div class="d-flex align-center gap-2">
+                        <div class="circle bg-dark rounded-circle"></div>
+                        <span class="bar-label text-nowrap">Overdue 30 days or more</span>
+                    </div>
+                    <div class="text-nowrap fw-semibold small">9,481 EUR</div>
+                </div>
+            </div>
+            <div class="progress bg-body mb-2" style="height: 8px;">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 68%;" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-primary" role="progressbar" style="width: 21%;" aria-valuenow="21" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-warning" role="progressbar" style="width: 6%;" aria-valuenow="6" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-danger" role="progressbar" style="width: 3%;" aria-valuenow="3" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-secondary" role="progressbar" style="width: 1%;" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-dark" role="progressbar" style="width: 1%;" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</MudPaper>
+
+<MudPaper Class="pa-4 mb-3">
+    <MudText Typo="Typo.h5">@L["Orders List"]</MudText>
+
+    <MudDataGrid T="Order" Items="Orders" Dense="true" Hover="true">
+        <Columns>
+            <PropertyColumn Title="@L["Order Number"]" Property="x => x.OrderNumber" />
+            <PropertyColumn Title="@L["Product"]" Property="x => x.Product" />
+            <PropertyColumn Title="@L["Amount"]" Property="x => x.Amount" CellStyle="text-align:right" HeaderStyle="text-align:right">
+                <CellTemplate>
+                    @context.Item.Amount.ToString("C2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")).Replace("€", "EUR ")
+                </CellTemplate>
+                <FooterTemplate>
+                    <MudText Typo="Typo.subtitle1"> @($"Total: {Orders.Sum(x => x.Amount).ToString("C2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")).Replace("€", "EUR ")}")</MudText>
+                </FooterTemplate>
+            </PropertyColumn>
+            <PropertyColumn Title="@L["Status"]" Property="x => x.Status" />
+            <PropertyColumn Title="@L["Customer Name"]" Property="x => x.CustomerName" />
+            <PropertyColumn Title="@L["Order Date"]" Property="x => x.OrderDate" Format="yyyy-MM-dd" />
+
+        </Columns>
+        <PagerContent>
+            <MudDataGridPager T="Order" />
+        </PagerContent>
+    </MudDataGrid>
+</MudPaper>
+
+<MudPaper Class="d-flex flex-row flex-grow-1 gap-4 pa-2" Elevation="0">
+    <MudIcon>
+        <svg width="24" height="24" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" transform="rotate(-90)"><circle cx="50" cy="20" r="7" fill="#3498db"><animateTransform attributeType="XML" attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="1.5s" repeatCount="indefinite" /></circle><circle cx="80" cy="50" r="7" fill="#e74c3c"><animateTransform attributeType="XML" attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="1.5s" begin="0.2s" repeatCount="indefinite" /></circle><circle cx="50" cy="80" r="7" fill="#f1c40f"><animateTransform attributeType="XML" attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="1.5s" begin="0.4s" repeatCount="indefinite" /></circle><circle cx="20" cy="50" r="7" fill="#2ecc71"><animateTransform attributeType="XML" attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="1.5s" begin="0.6s" repeatCount="indefinite" /></circle></svg>
+    </MudIcon>
+    <MudPaper Class="mud-theme-primary" Width="64px" Height="64px" />
+    <MudPaper Class="mud-theme-secondary" Width="64px" Height="64px" />
+    <MudPaper Class="mud-theme-tertiary" Width="64px" Height="64px" />
+    <MudPaper Class="mud-theme-info" Width="64px" Height="64px" />
+    <MudPaper Class="mud-theme-success" Width="64px" Height="64px" />
+    <MudPaper Class="mud-theme-warning" Width="64px" Height="64px" />
+    <MudPaper Class="mud-theme-error" Width="64px" Height="64px" />
+    <MudPaper Class="mud-theme-dark" Width="64px" Height="64px" />
+    <MudPaper Class="mud-theme-surface" Width="64px" Height="64px" />
+</MudPaper>
+<MudPaper Class="d-flex flex-column flex-grow-1 gap-4 pa-2" Elevation="0">
+    <MudFileUpload T="IReadOnlyList<IBrowserFile>" FilesChanged="UploadFiles">
+        <ActivatorContent>
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       StartIcon="@Icons.Material.Filled.CloudUpload">
+                Multiple Files
+            </MudButton>
+        </ActivatorContent>
+    </MudFileUpload>
+
+    @if (fileUploadResponses.Any())
+    {
+        <MudSimpleTable Hover Dense Elevation="0">
+            <tbody>
+                @foreach (var item in fileUploadResponses)
+                {
+                    <tr @onclick="()=>OnDownloadFile(item.Url)" style="cursor:pointer">
+                        <td><Thumbnail Path="@item.Path" FileUrl="@item.Url"> </Thumbnail></td>
+                        <td><FileSizeFormatter FileSizeInBytes="@((int)item.Size)"></FileSizeFormatter></td>
+                        <td style="width:50px"><MudIconButton Icon="@Icons.Material.Outlined.Delete" Color="Color.Error" title="@L["Delete"]" OnClick="@(()=>DeleteFile(item))"></MudIconButton></td>
+                    </tr>
+                }
+            </tbody>
+        </MudSimpleTable>
+    }
+
+</MudPaper>
+<MudPaper Class="d-flex flex-row flex-grow-1 gap-4 pa-2" Elevation="0">
+    <MudButton Variant="Variant.Filled">@L["Default"]</MudButton>
+    <MudButton Variant="Variant.Filled" OnClick="Send" Color="Color.Primary">@L["Send Notifications"]</MudButton>
+    <MudButton Variant="Variant.Filled" Color="Color.Info">@L["Info"]</MudButton>
+    <MudButton Variant="Variant.Filled" Color="Color.Error">@L["Error"]</MudButton>
+    <MudButton Variant="Variant.Filled" Color="Color.Secondary">@L["Secondary"]</MudButton>
+    <MudButton Variant="Variant.Filled" Disabled="true">@L["Disabled"]</MudButton>
+</MudPaper>
+<MudPaper Class="d-flex flex-column flex-grow-1 gap-0 pa-2" Elevation="0">
+    <MudText Typo="Typo.h1">@L["H1 Title"]</MudText>
+    <MudText Typo="Typo.h2">@L["H2 Title"]</MudText>
+    <MudText Typo="Typo.h3">H3 Title</MudText>
+    <MudText Typo="Typo.h4">H4 Title</MudText>
+    <MudText Typo="Typo.h5">H5 Title</MudText>
+    <MudText Typo="Typo.h6">H6 Title</MudText>
+
+    <MudText Typo="Typo.subtitle1"> Subtitle1 Blazor</MudText>
+    <MudText Typo="Typo.subtitle2"> Subtitle2 Blazor</MudText>
+    <MudText Typo="Typo.button"> @L["Button Text"]</MudText>
+
+    <MudText Typo="Typo.body1"> Here we add each class to the divs to change the background color, text color and both background and text color with one class only. </MudText>
+    <MudText Typo="Typo.body2"> Here we add each class to the divs to change the background color, text color and both background and text color with one class only. </MudText>
+    <MudText Typo="Typo.overline"> Here we add each class to the divs to change the background color, text color and both background and text color with one class only. </MudText>
+    <MudText Typo="Typo.caption"> Here we add each class to the divs to change the background color, text color and both background and text color with one class only. </MudText>
+
+    <MudText Typo="Typo.body1" Class="mud-secondary-text"> Here we add each class to the divs to change the background color, text color and both background and text color with one class only. </MudText>
+    <MudText Typo="Typo.body1" Class="mud-primary-text"> Here we add each class to the divs to change the background color, text color and both background and text color with one class only. </MudText>
+    <MudText Typo="Typo.body1" Class="mud-error-text"> Here we add each class to the divs to change the background color, text color and both background and text color with one class only. </MudText>
+    <MudText Typo="Typo.body1" Class="mud-info-text"> Here we add each class to the divs to change the background color, text color and both background and text color with one class only. </MudText>
+    <MudText Typo="Typo.body1" Class="mud-warning-text"> Here we add each class to the divs to change the background color, text color and both background and text color with one class only. </MudText>
+    <MudText Typo="Typo.body1" Class="mud-dark-text"> Here we add each class to the divs to change the background color, text color and both background and text color with one class only. </MudText>
+    <MudText Typo="Typo.body1" Class="mud-tertiary-text"> Here we add each class to the divs to change the background color, text color and both background and text color with one class only. </MudText>
+</MudPaper>
+<style>
+    @@import url("https://cdn.jsdelivr.net/npm/@@fancyapps/ui@@5.0.36/dist/fancybox/fancybox.css");
+
+    .fancybox__container {
+        --fancybox-bg: rgba(24, 24, 27, 0.85);
+        z-index: 9999;
+    }
+
+</style>
+@code {
+    public List<Order> Orders = new List<Order>
+        {
+            new Order { OrderNumber = "ORD0001", Amount = 150.50M, Currency = "EUR", Status = "Paid in full", OverdueStatus = "", OrderDate = DateTime.Now.AddDays(-1), CustomerName = "Alice", ShippingAddress = "123 Main St", Product = "Apple iPhone 15 Pro Max, 256GB, Blue Titanium" },
+            new Order { OrderNumber = "ORD0002", Amount = 220.00M, Currency = "EUR", Status = "Awaiting payment", OverdueStatus = "Overdue 1-6 days", OrderDate = DateTime.Now.AddDays(-5), CustomerName = "Bob", ShippingAddress = "456 Oak Rd", Product = "Samsung Galaxy S23 Ultra, 512GB, Phantom Black" },
+            new Order { OrderNumber = "ORD0003", Amount = 340.75M, Currency = "EUR", Status = "Awaiting payment", OverdueStatus = "Overdue 7-13 days", OrderDate = DateTime.Now.AddDays(-10), CustomerName = "Charlie", ShippingAddress = "789 Pine Ln", Product = "Sony WH-1000XM5 Wireless Noise Cancelling Headphones" },
+            new Order { OrderNumber = "ORD0004", Amount = 89.99M, Currency = "EUR", Status = "Paid in full", OverdueStatus = "", OrderDate = DateTime.Now.AddDays(-3), CustomerName = "David", ShippingAddress = "101 Maple Dr", Product = "Logitech MX Master 3S Wireless Mouse" },
+            new Order { OrderNumber = "ORD0005", Amount = 430.00M, Currency = "EUR", Status = "Awaiting payment", OverdueStatus = "Overdue 14-29 days", OrderDate = DateTime.Now.AddDays(-20), CustomerName = "Eva", ShippingAddress = "202 Birch Blvd", Product = "Razer BlackWidow V3 Mechanical Gaming Keyboard" },
+            new Order { OrderNumber = "ORD0006", Amount = 560.00M, Currency = "EUR", Status = "Paid in full", OverdueStatus = "", OrderDate = DateTime.Now.AddDays(-15), CustomerName = "Frank", ShippingAddress = "303 Cedar Ct", Product = "Dell UltraSharp U2723QE 27-inch 4K USB-C Monitor" },
+            new Order { OrderNumber = "ORD0007", Amount = 99.99M, Currency = "EUR", Status = "Awaiting payment", OverdueStatus = "Overdue 30 days or more", OrderDate = DateTime.Now.AddDays(-40), CustomerName = "Grace", ShippingAddress = "404 Elm Ave", Product = "Canon PIXMA TS9120 Wireless Inkjet Printer" },
+            new Order { OrderNumber = "ORD0008", Amount = 205.00M, Currency = "EUR", Status = "Paid in full", OverdueStatus = "", OrderDate = DateTime.Now.AddDays(-25), CustomerName = "Hannah", ShippingAddress = "505 Willow St", Product = "Apple iPad Air, 64GB, Space Gray" },
+            new Order { OrderNumber = "ORD0009", Amount = 312.00M, Currency = "EUR", Status = "Awaiting payment", OverdueStatus = "Overdue 1-6 days", OrderDate = DateTime.Now.AddDays(-2), CustomerName = "Isaac", ShippingAddress = "606 Fir Ln", Product = "Fitbit Charge 5 Fitness Tracker" },
+            new Order { OrderNumber = "ORD0010", Amount = 420.00M, Currency = "EUR", Status = "Paid in full", OverdueStatus = "", OrderDate = DateTime.Now.AddDays(-7), CustomerName = "John", ShippingAddress = "707 Maple Ave", Product = "GoPro HERO11 Black Action Camera" },
+            new Order { OrderNumber = "ORD0011", Amount = 188.00M, Currency = "EUR", Status = "Awaiting payment", OverdueStatus = "Overdue 7-13 days", OrderDate = DateTime.Now.AddDays(-12), CustomerName = "Kathy", ShippingAddress = "808 Oak St", Product = "Bose QuietComfort 45 Wireless Noise Cancelling Headphones" },
+            new Order { OrderNumber = "ORD0012", Amount = 500.00M, Currency = "EUR", Status = "Paid in full", OverdueStatus = "", OrderDate = DateTime.Now.AddDays(-18), CustomerName = "Liam", ShippingAddress = "909 Pine Blvd", Product = "Xbox Series X 1TB Console" },
+            new Order { OrderNumber = "ORD0013", Amount = 139.99M, Currency = "EUR", Status = "Awaiting payment", OverdueStatus = "Overdue 14-29 days", OrderDate = DateTime.Now.AddDays(-30), CustomerName = "Mia", ShippingAddress = "1010 Birch Ln", Product = "Samsung T7 Portable SSD, 1TB" },
+            new Order { OrderNumber = "ORD0014", Amount = 249.00M, Currency = "EUR", Status = "Paid in full", OverdueStatus = "", OrderDate = DateTime.Now.AddDays(-9), CustomerName = "Noah", ShippingAddress = "1111 Cedar Ave", Product = "Anker PowerCore 26800 PD Portable Charger" },
+            new Order { OrderNumber = "ORD0015", Amount = 700.00M, Currency = "EUR", Status = "Awaiting payment", OverdueStatus = "Overdue 30 days or more", OrderDate = DateTime.Now.AddDays(-35), CustomerName = "Olivia", ShippingAddress = "1212 Elm Dr", Product = "Bose SoundLink Revolve+ Bluetooth Speaker" },
+            new Order { OrderNumber = "ORD0016", Amount = 355.00M, Currency = "EUR", Status = "Paid in full", OverdueStatus = "", OrderDate = DateTime.Now.AddDays(-5), CustomerName = "Paul", ShippingAddress = "1313 Willow Rd", Product = "Herman Miller Aeron Chair" },
+            new Order { OrderNumber = "ORD0017", Amount = 850.00M, Currency = "EUR", Status = "Awaiting payment", OverdueStatus = "Overdue 1-6 days", OrderDate = DateTime.Now.AddDays(-4), CustomerName = "Quincy", ShippingAddress = "1414 Fir Blvd", Product = "Samsung Odyssey G9 49-inch Curved Gaming Monitor" },
+            new Order { OrderNumber = "ORD0018", Amount = 175.00M, Currency = "EUR", Status = "Paid in full", OverdueStatus = "", OrderDate = DateTime.Now.AddDays(-6), CustomerName = "Rita", ShippingAddress = "1515 Maple St", Product = "JBL Flip 6 Bluetooth Speaker" },
+            new Order { OrderNumber = "ORD0019", Amount = 450.00M, Currency = "EUR", Status = "Awaiting payment", OverdueStatus = "Overdue 7-13 days", OrderDate = DateTime.Now.AddDays(-11), CustomerName = "Samuel", ShippingAddress = "1616 Oak Ln", Product = "Epson EcoTank ET-8550 Wireless All-in-One Printer" },
+            new Order { OrderNumber = "ORD0020", Amount = 999.99M, Currency = "EUR", Status = "Paid in full", OverdueStatus = "", OrderDate = DateTime.Now.AddDays(-2), CustomerName = "Tina", ShippingAddress = "1717 Pine Ave", Product = "Apple MacBook Pro 14-inch, M2 Pro, 16GB RAM, 512GB SSD" }
+        };
+    public class Order
+    {
+        public string OrderNumber { get; set; }
+        public decimal Amount { get; set; }
+        public string Currency { get; set; }
+        public string Status { get; set; }
+        public string OverdueStatus { get; set; }
+        public DateTime OrderDate { get; set; }
+        public string CustomerName { get; set; }
+        public string ShippingAddress { get; set; }
+        public string Product { get; set; }
+    }
+
+
+
+    private async Task Send()
+    {
+        var random = new Random();
+        var titlesAndMessages = new[]
+        {
+            new { Title = "Seize the Day", Message = "Don't wait for tomorrow. Start now and make it happen!" },
+            new { Title = "Teamwork Wins", Message = "Together we can achieve more. Let’s move forward as one!" },
+            new { Title = "Innovation Ahead", Message = "Think outside the box and embrace new challenges." },
+            new { Title = "Stay Curious", Message = "Knowledge is power. Keep learning and exploring!" },
+            new { Title = "Small Steps Matter", Message = "Every journey begins with a single step. Keep going!" }
+        };
+
+        var selected = titlesAndMessages[random.Next(titlesAndMessages.Length)];
+        await WebpushrService.SendNotificationAsync(selected.Title, selected.Message, "https://github.com/neozhu/cleanaspire");
+    }
+
+
+
+    IList<IBrowserFile> files = new List<IBrowserFile>();
+    public List<FileUploadResponse> fileUploadResponses = new List<FileUploadResponse>();
+    private async Task UploadFiles(IReadOnlyList<IBrowserFile> files)
+    {
+        var antiforgeryToken = await ApiClient.FileManagement.AntiforgeryToken.GetAsync();
+        var request = new MultipartBody();
+        request.AddOrReplacePart("overwrite", "text/plain", "false");
+        request.AddOrReplacePart("folder", "text/plain", $"{DateTime.UtcNow.ToString("yyyyMMdd")}");
+        request.AddOrReplacePart($"__{antiforgeryToken.HeaderName}", "text/plain", $"{antiforgeryToken.RequestToken}");
+        var i = 0;
+        foreach (var file in files)
+        {
+            var filename = file.Name;
+            var stream = new MemoryStream();
+            await file.OpenReadStream(int.MaxValue).CopyToAsync(stream);
+            request.AddOrReplacePart($"files[{i++}]", "application/octet-stream", stream, filename);
+        }
+        var response = await ApiClient.FileManagement.Upload.PostAsync(request);
+        if (response is not null && response.Any())
+        {
+            fileUploadResponses.AddRange(response);
+        }
+
+    }
+    private async Task OnDownloadFile(string? str)
+    {
+        // var fileURL = str;
+        await new Fancybox(JS).Preview(str ?? string.Empty, []);
+    }
+    private async Task DeleteFile(FileUploadResponse item)
+    {
+        await ApiClient.FileManagement.DeleteAsync(request => request.QueryParameters.Path = item.Path);
+        fileUploadResponses.Remove(item);
+    }
+}

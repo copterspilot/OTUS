@@ -1,0 +1,64 @@
+﻿@page "/account/confirm-email"
+
+
+<PageTitle>@L["Confirm Verification"]</PageTitle>
+<MudPaper Elevation="3" Class="pa-8" Width="100%" MaxWidth="500px">
+    <div class="d-flex flex-row  align-center gap-3 my-3">
+        <MudBlazorLogo Style="with:60px;height:60px"></MudBlazorLogo>
+        <MudText Typo="Typo.h5">@L["Confirm Verification"]</MudText>
+    </div>
+    <div class="d-flex flex-column gap-2">
+        @if (success)
+        {
+            <MudAlert Severity="Severity.Success">@message</MudAlert>
+            <MudButton Href="/account/signin">@L["Sign In"]</MudButton>
+        }
+        else
+        {
+            <MudAlert Severity="Severity.Error">@message</MudAlert>
+        }
+    </div>
+</MudPaper>
+@code {
+    [SupplyParameterFromQuery(Name = "code")]
+    public string? Code { get; set; }
+    [SupplyParameterFromQuery(Name = "userId")]
+    public string? UserId { get; set; }
+    private bool success { get; set; }
+    private string? message { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        if (string.IsNullOrEmpty(Code))
+        {
+            message = L["Invalid or missing token. Please check your verification link."];
+        }
+        else
+        {
+
+            var result = await ApiClientServiceProxy.ExecuteAsync(() => ApiClient.ConfirmEmail.GetAsync(requestConfiguration =>
+            {
+                requestConfiguration.QueryParameters.Code = Code;
+                requestConfiguration.QueryParameters.UserId = UserId;
+            }
+               ));
+
+            result.Switch(
+                ok =>
+                {
+                    success = true;
+                    message = L["Your email has been successfully verified. You can now sign in."];
+                },
+                invalid =>
+                {
+                    message = L[invalid.Detail ?? "Failed validation"];
+                },
+                error =>
+                {
+                    message = L["Verification failed. The token may be invalid or expired."];
+                });
+            success = true;
+            message = L["Your email has been successfully verified. You can now sign in."];
+
+        }
+    }
+}

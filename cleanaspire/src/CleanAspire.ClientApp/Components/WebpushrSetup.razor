@@ -1,0 +1,13 @@
+﻿
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        var online = await OnlineStatusInterop.GetOnlineStatusAsync();
+        if (online)
+        {
+            var publicKey = await WebpushrService.GetPublicKeyAsync();
+            var webpushr = new Webpushr(JS);
+            await webpushr.SetupWebpushrAsync(publicKey!);
+        }
+    }
+}

@@ -1,0 +1,107 @@
+﻿@page "/account/profile"
+
+
+<PageTitle>@L["Profile"]</PageTitle>
+<div class="d-flex flex-column justify-center gap-2">
+    <MudText Typo="Typo.h4" Align="Align.Center">@L["Personal info"]</MudText>
+    <MudText Typo="Typo.body1" Align="Align.Center">@L["Info about you and your preferences"]</MudText>
+    <MudPaper>
+        <MudList T="string">
+            <MudListSubheader>
+                <MudText Typo="Typo.h4"> @L["Basic info"]</MudText>
+                <MudText Typo="Typo.body1">@L["Some info may be visible to other people using Google services. Learn more"]</MudText>
+            </MudListSubheader>
+            @if (userModel is not null)
+            {
+                <MudListItem>
+                    <div class="d-flex flex-row justify-space-between align-content-center gap-3">
+                        <MudText Style="min-width:120px">@L["Profile picture"]</MudText>
+                        <MudText Style="min-width:200px">@L["Add a profile picture to personalize your account"]</MudText>
+                        @if (userModel?.AvatarUrl != null)
+                        {
+                            <MudAvatar Size="Size.Large">
+                                <MudImage Src="@userModel?.AvatarUrl"></MudImage>
+                            </MudAvatar>
+                        }
+                        else
+                        {
+                            <MudAvatar Size="Size.Large">
+                                @userModel?.Username?.FirstOrDefault()
+                            </MudAvatar>
+                        }
+
+                    </div>
+                </MudListItem>
+                <MudListItem>
+                    <div class="d-flex flex-row justify-space-between align-content-center gap-3">
+                        <MudText Style="min-width:120px">@L["User name"]</MudText>
+                        <MudText Style="min-width:200px">@userModel?.Username</MudText>
+                        <MudIcon Icon="@Icons.Material.Filled.KeyboardArrowRight"></MudIcon>
+                    </div>
+                </MudListItem>
+                <MudListItem>
+                    <div class="d-flex flex-row justify-space-between align-content-center gap-3">
+                        <MudText Style="min-width:120px">@L["Nickname"]</MudText>
+                        <MudText Style="min-width:200px">@userModel?.Nickname</MudText>
+                        <MudIcon Icon="@Icons.Material.Filled.KeyboardArrowRight"></MudIcon>
+                    </div>
+                </MudListItem>
+                <MudListItem>
+                    <div class="d-flex flex-row justify-space-between align-content-center gap-3">
+                        <MudText Style="min-width:120px">@L["Language"]</MudText>
+                        <MudText Style="min-width:200px">@SupportedLocalization.SupportedLanguages.FirstOrDefault(x => x.Code == userModel?.LanguageCode)?.DisplayName</MudText>
+                        <MudIcon Icon="@Icons.Material.Filled.KeyboardArrowRight"></MudIcon>
+                    </div>
+                </MudListItem>
+                <MudListItem>
+                    <div class="d-flex flex-row justify-space-between align-content-center gap-3">
+                        <MudText Style="min-width:120px">@L["Time zone"]</MudText>
+                        <MudText Style="min-width:200px">@TimeZoneInfo.GetSystemTimeZones().FirstOrDefault(x => x.Id == userModel?.TimeZoneId)?.DisplayName</MudText>
+                        <MudIcon Icon="@Icons.Material.Filled.KeyboardArrowRight"></MudIcon>
+                    </div>
+                </MudListItem>
+            }
+
+        </MudList>
+    </MudPaper>
+</div>
+@code {
+    private ProfileResponse? userModel => UserProfileStore.Profile;
+    [SupplyParameterFromQuery(Name = "code")]
+    public string? Code { get; set; }
+    [SupplyParameterFromQuery(Name = "userId")]
+    public string? UserId { get; set; }
+    [SupplyParameterFromQuery(Name = "changedEmail")]
+    public string? ChangedEmail { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        if (!string.IsNullOrEmpty(Code) && !string.IsNullOrEmpty(UserId) && !string.IsNullOrEmpty(ChangedEmail))
+        {
+            var result = await ApiClientServiceProxy.ExecuteAsync(() => ApiClient.ConfirmEmail.GetAsync(requestConfiguration =>
+            {
+                requestConfiguration.QueryParameters.Code = Code;
+                requestConfiguration.QueryParameters.UserId = UserId;
+                requestConfiguration.QueryParameters.ChangedEmail = ChangedEmail;
+            }
+               ));
+
+            result.Switch(
+               async ok =>
+                {
+                    Snackbar.Add(L["Email confirmation successful. Your email has been updated."], Severity.Info);
+                    var profileResponse = await ApiClient.Account.Profile.GetAsync();
+                    UserProfileStore.Set(profileResponse);
+                    StateHasChanged();
+                },
+                invalid =>
+                {
+                    Snackbar.Add(L[invalid.Detail ?? "Failed validation"], Severity.Error);
+                },
+                error =>
+                {
+                    Snackbar.Add(L["An unexpected error occurred while confirming your email. Please try again later."], Severity.Error);
+                });
+        }
+    }
+
+}

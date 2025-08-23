@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+    <!-- 光晕效果 -->
+    <defs>
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
+            <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+        </filter>
+
+        <!-- 动画效果 -->
+        <style>
+            @keyframes glowPulse {
+            0% {
+            filter: drop-shadow(0 0 5px red);
+            opacity: 1;
+            }
+            25% {
+            filter: drop-shadow(0 0 20px red);
+            opacity: 0.8;
+            }
+            50% {
+            filter: drop-shadow(0 0 30px red);
+            opacity: 0.6;
+            }
+            75% {
+            filter: drop-shadow(0 0 20px red);
+            opacity: 0.8;
+            }
+            100% {
+            filter: drop-shadow(0 0 5px red);
+            opacity: 1;
+            }
+            }
+
+            .glowing {
+            animation: glowPulse 1.5s infinite;
+            }
+        </style>
+    </defs>
+
+    <!-- 球形效果 -->
+    <radialGradient id="sphereGradient" cx="50%" cy="50%" r="50%" fx="30%" fy="30%">
+        <stop offset="0%" stop-color="#FF0000" />
+        <stop offset="70%" stop-color="#7F0000" />
+        <stop offset="100%" stop-color="#4F0000" />
+    </radialGradient>
+
+    <!-- 小红点 with 3D sphere effect -->
+    <circle cx="12.5" cy="12.5" r="10" fill="url(#sphereGradient)" class="glowing" />
+</svg>

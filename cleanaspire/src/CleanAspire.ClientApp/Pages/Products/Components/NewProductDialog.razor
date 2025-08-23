@@ -1,0 +1,96 @@
+﻿@using CleanAspire.ClientApp.Components.Autocompletes
+@using CleanAspire.ClientApp.Services.Products
+
+@inject ProductServiceProxy ProductServiceProxy
+<MudDialog>
+    <DialogContent>
+        <MudForm @ref="editForm" @bind-IsValid="@success" @bind-Errors="@errors">
+            <MudGrid>
+                <MudItem xs="12" md="6">
+                    <MudTextField @bind-Value="model.Sku" For="@(() => model.Sku)"
+                                  Label="@L["SKU"]" Placeholder="@L["SKU"]"
+                                  Required="true" RequiredError="@L["Sku is required"]">
+                    </MudTextField>
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField @bind-Value="model.Name" For="@(() => model.Name)"
+                                  Label="@L["Name"]" Placeholder="@L["Name"]"
+                                  Required="true" RequiredError="@L["Name is required"]">
+                    </MudTextField>
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudEnumSelect TEnum="NullableOfProductCategoryDto?" @bind-Value="model.Category" For="@(() => model.Category)"
+                                   Label="@L["Category"]" Placeholder="@L["Category"]"
+                                   Required="true" RequiredError="@L["Category is required"]">
+                    </MudEnumSelect>
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <PicklistAutocomplete T="string" PickList="PicklistType.UOM" @bind-Value="model.Uom" For="@(() => model.Uom)"
+                                          Label="@L["UOM"]" Placeholder="@L["Uom"]"
+                                          Required="false" RequiredError="@L["Uom is required"]">
+                    </PicklistAutocomplete>
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudNumericField @bind-Value="model.Price" For="@(() => model.Price)"
+                                     Label="@L["Price"]" Placeholder="@L["Price"]"
+                                     Required="true" RequiredError="@L["Price is required"]">
+                    </MudNumericField>
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <PicklistAutocomplete T="string" PickList="PicklistType.Currency" @bind-Value="model.Currency" For="@(() => model.Currency)"
+                                          Label="@L["Currency"]" Placeholder="@L["Currency"]"
+                                          Required="true" RequiredError="@L["Currency is required"]">
+                    </PicklistAutocomplete>
+                </MudItem>
+                <MudItem xs="12" md="12">
+                    <MudTextField @bind-Value="model.Description" For="@(() => model.Description)"
+                                  Label="@L["Description"]" Placeholder="@L["Description"]">
+                    </MudTextField>
+                </MudItem>
+            </MudGrid>
+        </MudForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">@L["Cancel"]</MudButton>
+        <MudButton OnClick="Submit" Disabled="@_saving">@L["Save"]</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    bool success;
+    string[] errors = { };
+    [CascadingParameter] private IMudDialogInstance MudDialog { get; set; } = default!;
+    private CreateProductCommand model = new CreateProductCommand();
+    private MudForm editForm = default!;
+    private bool _saving;
+    private void Cancel() => MudDialog.Cancel();
+    private async Task Submit()
+    {
+        editForm?.Validate();
+        if (success)
+        {
+            _saving = true;
+
+            var result = await ProductServiceProxy.CreateProductAsync(model);
+            result.Switch(
+               async ok =>
+                {
+                    Snackbar.Add(L["Product created successfully!"], Severity.Success);
+                    MudDialog.Close(DialogResult.Ok(true));
+                    _saving = false;
+                },
+                invalid =>
+                {
+                    Snackbar.Add(L[invalid.Detail ?? "Failed validation"], Severity.Error);
+                    _saving = false;
+                },
+                error =>
+                {
+                    Snackbar.Add(error.Message ?? L["Failed to create product."], Severity.Error);
+                    _saving = false;
+                }
+            );
+        }
+
+    }
+}

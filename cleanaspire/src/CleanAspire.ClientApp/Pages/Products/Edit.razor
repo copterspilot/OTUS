@@ -1,0 +1,132 @@
+﻿@page "/products/edit/{Id}"
+@using CleanAspire.ClientApp.Components.Autocompletes
+@using CleanAspire.ClientApp.Components.Breadcrumbs
+@using CleanAspire.ClientApp.Services.Products
+
+@inject ProductServiceProxy ProductServiceProxy
+
+<PageTitle>@Title</PageTitle>
+
+<Breadcrumbs OnSaveButtonClick="Save" Saving="@_saving" BreadcrumbItems="_breadcrumbItems"></Breadcrumbs>
+<MudPaper Class="pa-5">
+    @if (model is not null)
+    {
+        <MudForm @ref="editForm" @bind-IsValid="@success" @bind-Errors="@errors">
+            <MudGrid>
+                <MudItem xs="12" md="6">
+                    <MudTextField @bind-Value="model.Sku" For="@(() => model.Sku)"
+                    Label="@L["SKU"]" Placeholder="@L["SKU"]"
+                    Required="true" RequiredError="@L["Sku is required"]">
+                    </MudTextField>
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField @bind-Value="model.Name" For="@(() => model.Name)"
+                    Label="@L["Name"]" Placeholder="@L["Name"]"
+                    Required="true" RequiredError="@L["Name is required"]">
+                    </MudTextField>
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudEnumSelect TEnum="NullableOfProductCategoryDto?" @bind-Value="model.Category" For="@(() => model.Category)"
+                    Label="@L["Category"]" Placeholder="@L["Category"]"
+                    Required="true" RequiredError="@L["Category is required"]">
+                    </MudEnumSelect>
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <PicklistAutocomplete T="string" PickList="PicklistType.UOM" @bind-Value="model.Uom" For="@(() => model.Uom)"
+                    Label="@L["UOM"]" Placeholder="@L["Uom"]"
+                    Required="false" RequiredError="@L["Uom is required"]">
+                    </PicklistAutocomplete>
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudNumericField @bind-Value="model.Price" For="@(() => model.Price)"
+                    Label="@L["Price"]" Placeholder="@L["Price"]"
+                    Required="true" RequiredError="@L["Price is required"]">
+                    </MudNumericField>
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <PicklistAutocomplete T="string" PickList="PicklistType.Currency" @bind-Value="model.Currency" For="@(() => model.Currency)"
+                    Label="@L["Currency"]" Placeholder="@L["Currency"]"
+                    Required="true" RequiredError="@L["Currency is required"]">
+                    </PicklistAutocomplete>
+                </MudItem>
+                <MudItem xs="12" md="12">
+                    <MudTextField @bind-Value="model.Description" For="@(() => model.Description)"
+                    Label="@L["Description"]" Placeholder="@L["Description"]">
+                    </MudTextField>
+                </MudItem>
+                <MudItem xs="12" md="12" Class="d-flex justify-end">
+                    <MudButton Disabled="@_saving" Color="Color.Primary" OnClick="Save">@L["Save"]</MudButton>
+                </MudItem>
+            </MudGrid>
+        </MudForm>
+    }
+</MudPaper>
+
+@code {
+    public string? Title;
+    [Parameter]
+    public string? Id { get; set; }
+    private bool _saving;
+    bool success;
+    string[] errors = { };
+    private UpdateProductCommand? model;
+    private MudForm editForm = default!;
+    private List<BreadcrumbItem> _breadcrumbItems = new List<BreadcrumbItem>
+    {
+        new BreadcrumbItem("Home", href: "/"),
+        new BreadcrumbItem("Products", href: "/products/index")
+    };
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await ProductServiceProxy.GetProductByIdAsync(Id);
+        result.Switch(
+            dto =>
+            {
+                model = new()
+                    {
+                        Id = dto.Id,
+                        Sku = dto.Sku,
+                        Name = dto.Name,
+                        Category = dto.Category,
+                        Uom = dto.Uom,
+                        Price = dto.Price,
+                        Currency = dto.Currency,
+                        Description = dto.Description
+                    };
+                _breadcrumbItems.Add(new BreadcrumbItem(model.Sku, href: $"/products/edit/{Id}"));
+            },
+            error => Snackbar.Add(error.Message, Severity.Error)
+        );
+
+
+    }
+    private async Task Save()
+    {
+        editForm?.Validate();
+        if (success == true)
+        {
+            _saving = true;
+            var result = await ProductServiceProxy.UpdateProductAsync(model);
+            _saving = result.Match(
+                ok =>
+                {
+                    Snackbar.Add(L["Product details saved successfully!"], Severity.Success);
+                    return false;
+                },
+                invalid =>
+                {
+                    Snackbar.Add(@L[invalid.Detail ?? "Failed validation"], Severity.Error);
+                    return false;
+                },
+                error =>
+                {
+                    Snackbar.Add(error.Message ?? L["Failed to save."], Severity.Error);
+                    return false;
+
+                }
+                );
+        }
+
+    }
+
+}

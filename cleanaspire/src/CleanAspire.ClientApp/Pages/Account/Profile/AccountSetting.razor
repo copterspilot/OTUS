@@ -1,0 +1,154 @@
+﻿
+@using Microsoft.Kiota.Abstractions
+<div class="d-flex flex-column gap-2">
+    <MudText Typo="Typo.h4">@L["Change email"]</MudText>
+    <MudDivider />
+
+    <MudText>@L["Changing your username can have unintended side effects."]</MudText>
+    <div class="flex-grow-0">
+        <MudButton Color="Color.Primary" OnClick="@(()=>showChangeEmailDialog=true)">@L["Change email"]</MudButton>
+    </div>
+
+    <MudText Typo="Typo.body1">@L["Looking to manage account security settings? You can find them in the Password and authentication page."]</MudText>
+
+    <MudText Typo="Typo.h4" Color="Color.Secondary" Class="mt-4">@L["Delete account"]</MudText>
+    <MudDivider />
+    <MudText>@L["You must remove yourself, transfer ownership, or delete these organizations before you can delete your user."]</MudText>
+    <div class="flex-grow-0">
+        <MudButton Color="Color.Error" OnClick="@(()=>showDeleteAccountDialog=true)">@L["Delete your account"]</MudButton>
+    </div>
+</div>
+
+<MudDialog @bind-Visible="showChangeEmailDialog" Options="dialogOptions">
+    <TitleContent>
+        <MudText Typo="Typo.h6">
+            <MudIcon Icon="@Icons.Material.Filled.Edit" Class="mr-3" Size="Size.Small" /> @L["Change Your Email"]
+        </MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudForm @bind-IsValid="@success">
+            <MudTextField T="string" Label="@L["New email address"]" Placeholder="Enter your new email address" @bind-Value="@newEmailAddress" Required="true" RequiredError="@L["Email is required!"]"
+            Validation="@(new EmailAddressAttribute() {ErrorMessage = L["The email address is invalid"]})"></MudTextField>
+        </MudForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton Color="Color.Primary" Disabled="@(!success)" OnClick="OnChangeMyEmail" Class="px-10">@L["Change my email"]</MudButton>
+    </DialogActions>
+</MudDialog>
+
+<MudDialog @bind-Visible="showDeleteAccountDialog" Options="dialogOptions">
+    <TitleContent>
+        <MudText Typo="Typo.h6">
+            <MudIcon Icon="@Icons.Material.Filled.Delete" Class="mr-3" Size="Size.Small" /> @L["Delete your account"]
+        </MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudText Typo="Typo.body1">
+            @L["Are you sure you want to delete your account? This action cannot be undone."]
+        </MudText>
+        <div>
+            <span class="mud-typography mud-typography-body2 mud-secondary-text">
+                @L["Please type your username to confirm. Your current username is:"]
+            </span>
+            <span class="mud-typography mud-typography-caption mud-error-text" style="font-weight:500">
+                @model?.Username
+            </span>
+        </div>
+
+        <MudForm @bind-IsValid="@deleteSuccess">
+            <MudTextField T="string" Label="@L["User name"]" Placeholder="Enter your user name" @bind-Value="@confirmUsername" Required="true" RequiredError="@L["User name is required!"]"
+            Validation="@(new Func<string, string?>(userNameMatch))"></MudTextField>
+        </MudForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton Color="Color.Error" Disabled="@(!deleteSuccess)" OnClick="OnDeleteAccount" Class="px-10">@L["Delete my account"]</MudButton>
+    </DialogActions>
+</MudDialog>
+@code {
+    bool success;
+    private bool showChangeEmailDialog;
+    private string? confirmUsername;
+    private bool showDeleteAccountDialog;
+    private bool deleteSuccess;
+    private string? newEmailAddress;
+
+    private DialogOptions dialogOptions = new() { MaxWidth = MaxWidth.ExtraSmall, CloseOnEscapeKey = true, CloseButton = true };
+    private ProfileResponse? model => UserProfileStore.Profile;
+
+    private async Task OnChangeMyEmail()
+    {
+        var online = await OnlineStatusInterop.GetOnlineStatusAsync();
+        if (!online)
+        {
+            Snackbar.Add(L["You are offline. Please check your internet connection."], Severity.Error);
+            return;
+        }
+        if (success)
+        {
+            var result = await ApiClientServiceProxy.ExecuteAsync(async () =>
+            {
+                await ApiClient.Account.UpdateEmail.PostAsync(new UpdateEmailRequest()
+                {
+                    NewEmail = newEmailAddress
+                });
+                return true;
+            });
+            result.Switch(
+            ok =>
+            {
+                showChangeEmailDialog = false;
+                Snackbar.Add(L["Email change request sent successfully. Please check your new email for confirmation."], Severity.Info);
+            },
+            invalid =>
+            {
+                Snackbar.Add(L[invalid.Detail ?? "Failed validation"], Severity.Error);
+            },
+            error =>
+            {
+                Snackbar.Add(L["Failed to update email address."], Severity.Error);
+            });
+        }
+    }
+    private async Task OnDeleteAccount()
+    {
+        var online = await OnlineStatusInterop.GetOnlineStatusAsync();
+        if (!online)
+        {
+            Snackbar.Add(L["You are offline. Please check your internet connection."], Severity.Error);
+            return;
+        }
+        if (deleteSuccess)
+        {
+            var result = await ApiClientServiceProxy.ExecuteAsync(async () =>
+            {
+                await ApiClient.Account.DeleteOwnerAccount.DeleteAsync(new DeleteUserRequest()
+                {
+                    Username = confirmUsername
+                });
+                return true;
+            });
+            result.Switch(
+            ok =>
+            {
+                showDeleteAccountDialog = false;
+                Snackbar.Add(L["Your account has been deleted successfully."], Severity.Info);
+                Navigation.NavigateTo("/account/signin", true);
+            },
+            invalid =>
+            {
+                Snackbar.Add(L[invalid.Detail ?? "Failed validation"], Severity.Error);
+            },
+            error =>
+            {
+                Snackbar.Add(L["Failed to delete your account."], Severity.Error);
+            });
+        }
+    }
+
+    private string? userNameMatch(string? arg)
+    {
+        if (model?.Username != arg)
+            return L["Username does not match"];
+        return null;
+    }
+}

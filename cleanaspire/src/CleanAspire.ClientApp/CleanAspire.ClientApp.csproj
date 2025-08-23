@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
+        <StaticWebAssetProjectMode>Default</StaticWebAssetProjectMode>
+        <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+        <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+        <RootNamespace>CleanAspire.ClientApp</RootNamespace>
+        <AssemblyName>CleanAspire.ClientApp</AssemblyName>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.8" />
+        <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.8" />
+        <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
+        <PackageReference Include="Microsoft.Kiota.Abstractions" Version="1.19.0" />
+        <PackageReference Include="Microsoft.Kiota.Http.HttpClientLibrary" Version="1.19.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.8" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.8" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="9.0.8" />
+        <PackageReference Include="Microsoft.Kiota.Serialization.Form" Version="1.19.0" />
+        <PackageReference Include="Microsoft.Kiota.Serialization.Json" Version="1.19.0" />
+        <PackageReference Include="Microsoft.Kiota.Serialization.Multipart" Version="1.19.0" />
+        <PackageReference Include="Microsoft.Kiota.Serialization.Text" Version="1.19.0" />
+        <PackageReference Include="MudBlazor" Version="8.11.0" />
+        <PackageReference Include="Net.Codecrete.QrCodeGenerator" Version="2.0.7" />
+        <PackageReference Include="OneOf" Version="3.0.271" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+    </ItemGroup>
+
+</Project>

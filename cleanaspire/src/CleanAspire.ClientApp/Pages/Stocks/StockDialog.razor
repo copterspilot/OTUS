@@ -1,0 +1,92 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using CleanAspire.ClientApp.Components.Autocompletes
+<MudDialog>
+    <DialogContent>
+        <MudForm @ref="editForm">
+            <div class="d-flex flex-column gap-2">
+                <ProductAutocomplete T="ProductDto" @bind-Value="@model.Product" DefaultProductId="@model.ProductId" Label="@L["Product"]" Required="true" ErrorText="@L["Product is required."]" />
+                <MudTextField T="string" Label="@L["Location"]" For="@(() => model.Location)" @bind-Value="model.Location" Required="true" ErrorText="@L["Location is required."]" />
+                <MudNumericField T="int?" Label="@L["Quantity"]" For="@(() => model.Quantity)" @bind-Value="model.Quantity" Validation="ValidateQuantity" Required="true" ErrorText="@L["Quantity must be greater than 0."]" />
+            </div>
+        </MudForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">@L["Cancel"]</MudButton>
+        <MudButton OnClick="Submit" Disabled="@_saving">@L["Save"]</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter] private IMudDialogInstance MudDialog { get; set; } = default!;
+    [Parameter]
+    public bool Inbound { get; set; }
+    [Parameter]
+    public Model model { get; set; } = new Model();
+    private MudForm editForm = default!;
+    public string Localtion { get; set; } = string.Empty;
+    private bool _saving = false;
+    private void Cancel() => MudDialog.Cancel();
+    private async Task Submit()
+    {
+        await editForm.Validate(); // Validate manually before submitting.
+        if (editForm.IsValid)
+        {
+            _saving = true;
+            if (Inbound)
+            {
+                var result = await ApiClientServiceProxy.ExecuteAsync(() => ApiClient.Stocks.Receive.PostAsync(new  StockReceivingCommand  () { ProductId = model.Product.Id,  Location = model.Location, Quantity = model.Quantity }));
+                result.Switch(
+                    ok =>
+                    {
+                        Snackbar.Add(L["Stock received successfully."], Severity.Success);
+                    },
+                    invalid =>
+                    {
+                        Snackbar.Add(L[invalid.Detail ?? "Failed validation"], Severity.Error);
+                    },
+                    error =>
+                    {
+                        Snackbar.Add(L["Stock receiving failed. Please try again."], Severity.Error);
+                    }
+                );
+            }
+            else
+            {
+                var result = await ApiClientServiceProxy.ExecuteAsync(() => ApiClient.Stocks.Dispatch.PostAsync(new  StockDispatchingCommand() { ProductId = model.Product.Id, Location = model.Location, Quantity = model.Quantity }));
+                result.Switch(
+                    ok =>
+                    {
+                        Snackbar.Add(L["Stock dispatched successfully."], Severity.Success);
+                    },
+                    invalid =>
+                    {
+                        Snackbar.Add(L[invalid.Detail ?? "Failed validation"], Severity.Error);
+                    },
+                    error =>
+                    {
+                        Snackbar.Add(L["Stock dispatching failed. Please try again."], Severity.Error);
+                    }
+                );
+            }
+            MudDialog.Close(DialogResult.Ok(model));
+            _saving = false;
+        }
+    }
+
+    private IEnumerable<string> ValidateQuantity(int? value)
+    {
+        if (!value.HasValue || value <= 0)
+        {
+            yield return L["Quantity must be greater than 0."];
+        }
+    }
+    public class Model
+    {
+        public string? ProductId { get; set; }
+        [Required(ErrorMessage = "Product id is required.")]
+        public ProductDto? Product { get; set; }
+        [Required(ErrorMessage = "Location id is required.")]
+        public string Location { get; set; }
+        public int? Quantity { get; set; }
+    }
+}

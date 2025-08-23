@@ -1,0 +1,151 @@
+﻿@page "/stocks/index"
+<PageTitle>@Title</PageTitle>
+
+<MudDataGrid T="StockDto" Dense="true" Hover="true"
+             @ref="_table"
+             ServerData="@(ServerReload)"
+             MultiSelection="true"
+             SelectOnRowClick="false"
+             @bind-RowsPerPage="_defaultPageSize"
+             @bind-SelectedItems="_selectedItems"
+             @bind-SelectedItem="_currentDto">
+    <ToolBarContent>
+        <MudStack Row Spacing="0" Class="flex-grow-1" Justify="Justify.SpaceBetween">
+            <MudStack Row AlignItems="AlignItems.Start">
+                <MudIcon Icon="@Icons.Material.Filled.Inventory" Size="Size.Large" />
+                <MudStack Spacing="0">
+                    <MudText Typo="Typo.subtitle2">@L[Title]</MudText>
+                    <MudText Typo="Typo.body2">@L["Check product stock levels."]</MudText>
+                </MudStack>
+            </MudStack>
+            <MudStack Spacing="0" AlignItems="AlignItems.End">
+                <MudStack Row Spacing="1">
+                    <MudButton Size="Size.Small" OnClick="()=>_table.ReloadServerData()" Disabled="@_loading">
+                        <MudIcon Icon="@Icons.Material.Filled.Refresh" />
+                        <MudText>@L["Refresh"]</MudText>
+                    </MudButton>
+                    <MudButton Size="Size.Small" OnClick="Receive">
+                        <MudIcon Icon="@Icons.Material.Filled.Add" />
+                        <MudText>@L["Receiving"]</MudText>
+                    </MudButton>
+                </MudStack>
+                <MudStack Row Spacing="1">
+                    <MudTextField T="string" ValueChanged="@(s => OnSearch(s))" Value="@_keywords" Placeholder="@L["Keywords"]" Adornment="Adornment.End"
+                                  AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Small">
+                    </MudTextField>
+                </MudStack>
+            </MudStack>
+        </MudStack>
+    </ToolBarContent>
+    <Columns>
+        <TemplateColumn HeaderStyle="width:60px" Title="@L["Commands"]" Sortable="false">
+            <CellTemplate>
+                <MudIconButton Icon="@Icons.Material.Filled.LocalShipping" OnClick="@(x=>Dispatch(context.Item))" />
+            </CellTemplate>
+        </TemplateColumn>
+        <PropertyColumn Title="@L["SKU"]" Property="x => x.ProductId">
+            <CellTemplate>
+                @context.Item.Product?.Sku
+            </CellTemplate>
+        </PropertyColumn>
+        <PropertyColumn Title="@L["Product Name"]" Property="x => x.ProductId" Sortable="false">
+            <CellTemplate>
+                <MudText Typo="Typo.body1">@context.Item.Product?.Name</MudText>
+                <MudText Typo="Typo.body1">@context.Item.Product?.Description</MudText>
+            </CellTemplate>
+        </PropertyColumn>
+        <PropertyColumn Title="@L["Location"]" Property="x => x.Location" />
+        <PropertyColumn Title="@L["Quantity"]" Property="x => x.Quantity" Format="#,#" AggregateDefinition="_qtyAggregation" />
+        <PropertyColumn Title="@L["UOM"]" Property="x => x.ProductId" Sortable="false">
+            <CellTemplate>
+                @context.Item.Product?.Uom
+            </CellTemplate>
+        </PropertyColumn>
+        <PropertyColumn Title="@L["Amount"]" Property="x => x.Product" Sortable="false">
+            <CellTemplate>
+                @($"{((context.Item.Quantity ?? 0) * (context.Item.Product?.Price ?? 0)).ToString("#,#")} {context.Item.Product?.Currency}")
+            </CellTemplate>
+        </PropertyColumn>
+    </Columns>
+    <PagerContent>
+        <MudDataGridPager T="StockDto" />
+    </PagerContent>
+</MudDataGrid>
+@code {
+    public string Title = "Stock Inquiry";
+    private HashSet<StockDto> _selectedItems = new();
+    private StockDto _currentDto = new();
+    private MudDataGrid<StockDto> _table = default!;
+    private int _defaultPageSize = 10;
+    private string _keywords = string.Empty;
+    private bool _loading = false;
+    private readonly string[] tags = new[] { "stocks" };
+    private readonly TimeSpan timeSpan = TimeSpan.FromSeconds(30);
+    private async Task<GridData<StockDto>> ServerReload(GridState<StockDto> state)
+    {
+        try
+        {
+            _loading = true;
+            var query = new StocksWithPaginationQuery();
+            query.PageNumber = state.Page;
+            query.PageSize = state.PageSize;
+            query.Keywords = _keywords;
+            query.OrderBy = state.SortDefinitions.FirstOrDefault()?.SortBy ?? "Id";
+            query.SortDirection = state.SortDefinitions.FirstOrDefault()?.Descending ?? true ? SortDirection.Descending.ToString() : SortDirection.Ascending.ToString();
+            var cacheKey = $"_{query.Keywords}_{query.PageSize}_{query.PageNumber}_{query.OrderBy}_{query.SortDirection}";
+            var result = await ApiClientServiceProxy.QueryAsync(cacheKey, () => ApiClient.Stocks.Pagination.PostAsync(query), tags, timeSpan);
+            return new GridData<StockDto> { TotalItems = (int)result.TotalItems, Items = result.Items };
+        }
+        finally
+        {
+            _loading = false;
+        }
+    }
+    AggregateDefinition<StockDto> _qtyAggregation = new AggregateDefinition<StockDto>
+        {
+            Type = AggregateType.Sum,
+            NumberFormat = "#,#",
+            DisplayFormat = "Total quantity is {value}"
+        };
+    private async Task OnSearch(string text)
+    {
+        _selectedItems = new HashSet<StockDto>();
+        _keywords = text;
+        await _table.ReloadServerData();
+    }
+    private async Task Receive()
+    {
+        var parameters = new DialogParameters<StockDialog>
+        {
+           {x=>x.Inbound, true}
+        };
+        await DialogServiceHelper.ShowDialogAsync<StockDialog>(L["Stock receiving"], parameters, new DialogOptions() { MaxWidth = MaxWidth.Small },
+        async (state) =>
+        {
+            if (state is not null && !state.Canceled)
+            {
+                await ApiClientServiceProxy.ClearCache(tags);
+                await _table.ReloadServerData();
+                _selectedItems = new();
+            }
+        });
+    }
+    private async Task Dispatch(StockDto item)
+    {
+        var parameters = new DialogParameters<StockDialog>
+        {
+           {x=>x.Inbound, false},
+           {x=>x.model, new StockDialog.Model(){ Location = item.Location, Quantity=item.Quantity, ProductId=item.ProductId } }
+        };
+        await DialogServiceHelper.ShowDialogAsync<StockDialog>(L["Stock dispatching"], parameters, new DialogOptions() { MaxWidth = MaxWidth.Small },
+        async (state) =>
+        {
+            if (state is not null && !state.Canceled)
+            {
+                await ApiClientServiceProxy.ClearCache(tags);
+                await _table.ReloadServerData();
+                _selectedItems = new();
+            }
+        });
+    }
+}

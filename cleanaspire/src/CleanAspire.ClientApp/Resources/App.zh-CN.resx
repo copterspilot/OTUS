@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="A comprehensive library. Takes the hassle out of designing for Blazor. Used in many ongoing projects at the Mail Solutions Group. The MudBlazor team has a real gem here." xml:space="preserve">
+    <value>MudBlazor 团队的确拥有一个宝藏。</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>账户</value>
+  </data>
+  <data name="Activating offline mode grants access to critical features and data without the need for an active internet connection. This feature is ideal for environments where connectivity is unreliable or unavailable. Ensure your device is secure to prevent potential data risks." xml:space="preserve">
+    <value>激活离线模式可以在无需活跃互联网连接的情况下访问关键功能和数据。此功能非常适合连接不稳定或无法连接的环境。请确保您的设备安全以防止潜在的数据风险。</value>
+  </data>
+  <data name="Add a profile picture to personalize your account" xml:space="preserve">
+    <value>添加个人资料图片以个性化您的账户</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>金额</value>
+  </data>
+  <data name="Are you sure you want to delete your account? This action cannot be undone." xml:space="preserve">
+    <value>您确定要删除您的账户吗？此操作无法撤销。</value>
+  </data>
+  <data name="Authenticating, please wait..." xml:space="preserve">
+    <value>正在验证，请稍候...</value>
+  </data>
+  <data name="Authenticator app" xml:space="preserve">
+    <value>验证器应用程序</value>
+  </data>
+  <data name="Authenticator code" xml:space="preserve">
+    <value>需要验证器代码</value>
+  </data>
+  <data name="Authenticator code is required" xml:space="preserve">
+    <value>验证器代码是必需的</value>
+  </data>
+  <data name="Basic info" xml:space="preserve">
+    <value>基本信息</value>
+  </data>
+  <data name="Best open source component library for Blazor out there and easy to understand!" xml:space="preserve">
+    <value>目前最好的 Blazor 开源组件库，并且容易理解！</value>
+  </data>
+  <data name="Button Text" xml:space="preserve">
+    <value>按钮文本</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>类别</value>
+  </data>
+  <data name="Category is required" xml:space="preserve">
+    <value>类别是必需的</value>
+  </data>
+  <data name="Change Your Email" xml:space="preserve">
+    <value>更改您的电子邮件</value>
+  </data>
+  <data name="Change email" xml:space="preserve">
+    <value>更改电子邮件</value>
+  </data>
+  <data name="Change email confirm" xml:space="preserve">
+    <value>确认更改电子邮件</value>
+  </data>
+  <data name="Change my email" xml:space="preserve">
+    <value>更改我的电子邮件</value>
+  </data>
+  <data name="Changing your username can have unintended side effects." xml:space="preserve">
+    <value>更改用户名可能会产生意想不到的副作用。</value>
+  </data>
+  <data name="Check Your Inbox" xml:space="preserve">
+    <value>检查您的收件箱</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="Coming of an Angular project back to .NET, Blazor was the ideal choice and MudBlazor was the icing on the cake. . . not \&quot;mud\&quot; but a rich creamy sweet chocolate." xml:space="preserve">
+    <value>从 Angular 项目回归到 .NET，Blazor 是理想选择，而 MudBlazor 是锦上添花。它不是“泥土”，而是丰富的奶油巧克力。</value>
+  </data>
+  <data name="Comprehensive, ambitious, fresh and clean. Some really cool implementations. The development and improvement of components is really fast, and if a course correction is needed, they will do it. Garderoben, henon and all the other contributors are approachable. They are getting stuff done!" xml:space="preserve">
+    <value>全面、雄心勃勃、新鲜且干净。一些非常酷的实现。组件的开发和改进速度非常快，如果需要纠正方向，他们会迅速调整。Garderoben、henon 和所有其他贡献者都很平易近人。他们正在完成任务！</value>
+  </data>
+  <data name="Configure Authenticator App" xml:space="preserve">
+    <value>配置验证器应用程序</value>
+  </data>
+  <data name="Confirm Verification" xml:space="preserve">
+    <value>确认验证</value>
+  </data>
+  <data name="Confirm new email" xml:space="preserve">
+    <value>确认新电子邮件</value>
+  </data>
+  <data name="Confirm password" xml:space="preserve">
+    <value>确认密码</value>
+  </data>
+  <data name="Confirm password is required" xml:space="preserve">
+    <value>需要确认密码</value>
+  </data>
+  <data name="Confirm password reset" xml:space="preserve">
+    <value>确认密码重置</value>
+  </data>
+  <data name="Copy Codes to Clipboard" xml:space="preserve">
+    <value>复制代码到剪贴板</value>
+  </data>
+  <data name="Create an Account" xml:space="preserve">
+    <value>创建账户</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>货币</value>
+  </data>
+  <data name="Currency is required" xml:space="preserve">
+    <value>货币是必需的</value>
+  </data>
+  <data name="Customer Name" xml:space="preserve">
+    <value>客户名称</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>默认</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="Delete account" xml:space="preserve">
+    <value>删除账户</value>
+  </data>
+  <data name="Delete my account" xml:space="preserve">
+    <value>删除我的账户</value>
+  </data>
+  <data name="Delete your account" xml:space="preserve">
+    <value>删除您的账户</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="Disable" xml:space="preserve">
+    <value>禁用</value>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>已禁用</value>
+  </data>
+  <data name="Don't have an account?" xml:space="preserve">
+    <value>没有账户？</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>电子邮件</value>
+  </data>
+  <data name="Email is required" xml:space="preserve">
+    <value>需要电子邮件</value>
+  </data>
+  <data name="Email is required!" xml:space="preserve">
+    <value>需要电子邮件！</value>
+  </data>
+  <data name="Enable Offline Mode" xml:space="preserve">
+    <value>启用离线模式</value>
+  </data>
+  <data name="Enabling offline mode stores certain data locally to ensure secure authentication and continued access when an internet connection is unavailable. However, local data storage may increase the risk of data breaches if your device is compromised. Please ensure your device is secure to mitigate this risk." xml:space="preserve">
+    <value>启用离线模式将某些数据存储在本地，以确保在无法连接互联网时能够进行安全身份验证并继续访问。然而，本地数据存储可能会增加如果设备被攻破时的数据泄露风险。请确保您的设备安全以减轻这一风险。</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>导出</value>
+  </data>
+  <data name="For enhanced security, two-factor authentication will be required for your account. This helps protect your account with an additional layer of security." xml:space="preserve">
+    <value>为了增强安全性，您的账户将需要启用两步验证。这为您的账户提供了额外一层安全保护。</value>
+  </data>
+  <data name="Forget password?" xml:space="preserve">
+    <value>忘记密码？</value>
+  </data>
+  <data name="Forgot Password?" xml:space="preserve">
+    <value>忘记密码？</value>
+  </data>
+  <data name="Generate Codes" xml:space="preserve">
+    <value>生成代码</value>
+  </data>
+  <data name="Generate recovery codes to regain access if you lose your two-factor authentication device." xml:space="preserve">
+    <value>生成恢复代码以在丢失两步验证设备时重新获得访问权限。</value>
+  </data>
+  <data name="Give me ideas about how to plan my New Years resolutions" xml:space="preserve">
+    <value>给我一些关于如何规划新年目标的想法</value>
+  </data>
+  <data name="H1 Title" xml:space="preserve">
+    <value>一级标题</value>
+  </data>
+  <data name="H2 Title" xml:space="preserve">
+    <value>二级标题</value>
+  </data>
+  <data name="Have an account?" xml:space="preserve">
+    <value>有账户？</value>
+  </data>
+  <data name="Help me pick an outfit that will look good on camera" xml:space="preserve">
+    <value>帮我挑一套在镜头前好看的服装</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>主页</value>
+  </data>
+  <data name="I agree to the terms and privacy" xml:space="preserve">
+    <value>我同意条款和隐私政策</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>导入</value>
+  </data>
+  <data name="Important: Recovery codes are shown only once and will not be stored on the server. Please save them securely." xml:space="preserve">
+    <value>重要提示：恢复代码仅显示一次，并且不会存储在服务器上。请妥善保存它们。</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>信息</value>
+  </data>
+  <data name="Info about you and your preferences" xml:space="preserve">
+    <value>关于您和您的偏好设置信息</value>
+  </data>
+  <data name="Invoiced amount" xml:space="preserve">
+    <value>发票金额</value>
+  </data>
+  <data name="Keywords" xml:space="preserve">
+    <value>关键词</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="Login with Google" xml:space="preserve">
+    <value>用 Google 登录</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>登出</value>
+  </data>
+  <data name="Looking to manage account security settings? You can find them in the Password and authentication page." xml:space="preserve">
+    <value>想管理账户安全设置？您可以在密码和身份验证页面找到。</value>
+  </data>
+  <data name="Make a sandwich using ingredients from my kitchen" xml:space="preserve">
+    <value>用我的厨房食材做一个三明治</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>更多</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="Name is required" xml:space="preserve">
+    <value>名称是必需的</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>新</value>
+  </data>
+  <data name="New email address" xml:space="preserve">
+    <value>新电子邮件地址</value>
+  </data>
+  <data name="New password" xml:space="preserve">
+    <value>新密码</value>
+  </data>
+  <data name="New password confirm" xml:space="preserve">
+    <value>确认新密码</value>
+  </data>
+  <data name="Nickname" xml:space="preserve">
+    <value>昵称</value>
+  </data>
+  <data name="No recovery codes to copy." xml:space="preserve">
+    <value>没有可复制的恢复代码。</value>
+  </data>
+  <data name="No worries! Just enter your email address below and we'll send you a link to reset your password." xml:space="preserve">
+    <value>别担心！只需在下方输入您的电子邮件地址，我们将向您发送一封密码重置链接的邮件。</value>
+  </data>
+  <data name="Offline Mode" xml:space="preserve">
+    <value>离线模式</value>
+  </data>
+  <data name="Offline mode allows access to essential features without requiring an internet connection, which is particularly useful in areas with limited or no connectivity." xml:space="preserve">
+    <value>离线模式允许在无需互联网连接的情况下访问基本功能，这在连接有限或无连接的区域特别有用。</value>
+  </data>
+  <data name="Order Date" xml:space="preserve">
+    <value>订单日期</value>
+  </data>
+  <data name="Order Number" xml:space="preserve">
+    <value>订单编号</value>
+  </data>
+  <data name="Orders List" xml:space="preserve">
+    <value>订单列表</value>
+  </data>
+  <data name="Organization" xml:space="preserve">
+    <value>组织</value>
+  </data>
+  <data name="Organization selection is required" xml:space="preserve">
+    <value>需要选择组织</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="Password is required" xml:space="preserve">
+    <value>密码是必需的</value>
+  </data>
+  <data name="Personal info" xml:space="preserve">
+    <value>个人信息</value>
+  </data>
+  <data name="Please type your username to confirm. Your current username is:" xml:space="preserve">
+    <value>请输入您的用户名以确认。您当前的用户名是：</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>价格</value>
+  </data>
+  <data name="Price is required" xml:space="preserve">
+    <value>价格是必需的</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>打印</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>产品</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>个人资料</value>
+  </data>
+  <data name="Profile picture" xml:space="preserve">
+    <value>个人资料图片</value>
+  </data>
+  <data name="Public profile" xml:space="preserve">
+    <value>公共资料</value>
+  </data>
+  <data name="Quiz me on world capitals to enhance my geography skills" xml:space="preserve">
+    <value>测验我关于世界首都的知识以增强我的地理技能</value>
+  </data>
+  <data name="Recovery codes" xml:space="preserve">
+    <value>恢复代码</value>
+  </data>
+  <data name="Recovery codes copied to clipboard!" xml:space="preserve">
+    <value>恢复代码已复制到剪贴板！</value>
+  </data>
+  <data name="Recovery codes generated. Save them securely as they will not be shown again." xml:space="preserve">
+    <value>恢复代码已生成。请妥善保存它们，因为它们将不再显示。</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="Remember me" xml:space="preserve">
+    <value>记住我</value>
+  </data>
+  <data name="SKU" xml:space="preserve">
+    <value>SKU</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="Save Profile" xml:space="preserve">
+    <value>保存个人资料</value>
+  </data>
+  <data name="Saving us from tons of tiny details and allowing us to deliver sharp looking modern web applications, MudBlazor is the king of open source UI frameworks that no one should miss when building apps with Blazor!" xml:space="preserve">
+    <value>MudBlazor 是拯救我们免于大量细节麻烦并让我们能够交付现代化尖锐外观的 Web 应用的开源 UI 框架之王，在用 Blazor 构建应用时不容错过！</value>
+  </data>
+  <data name="Secondary" xml:space="preserve">
+    <value>次要</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>安全</value>
+  </data>
+  <data name="Select Organization" xml:space="preserve">
+    <value>选择组织</value>
+  </data>
+  <data name="Send Email" xml:space="preserve">
+    <value>发送电子邮件</value>
+  </data>
+  <data name="Send Notifications" xml:space="preserve">
+    <value>发送通知</value>
+  </data>
+  <data name="Set new password" xml:space="preserve">
+    <value>设置新密码</value>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="Sign In" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="Signup" xml:space="preserve">
+    <value>注册</value>
+  </data>
+  <data name="Signup Successful" xml:space="preserve">
+    <value>注册成功</value>
+  </data>
+  <data name="Sku is required" xml:space="preserve">
+    <value>需要 SKU</value>
+  </data>
+  <data name="Some info may be visible to other people using Google services. Learn more" xml:space="preserve">
+    <value>某些信息可能会向使用 Google 服务的其他人可见。了解更多</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="Suggest fun activities to help me make friends in a new city" xml:space="preserve">
+    <value>建议有趣的活动来帮助我在新城市结交朋友</value>
+  </data>
+  <data name="Tell me a fun fact about the Roman Empire" xml:space="preserve">
+    <value>告诉我一个关于罗马帝国的有趣事实</value>
+  </data>
+  <data name="Thank you for signing up. To complete your registration, please activate your account by clicking the activation link sent to your email address. If you do not receive the email within a few minutes, please check your spam or junk folder." xml:space="preserve">
+    <value>感谢您的注册。要完成注册，请通过点击发送到您电子邮件地址的激活链接激活您的账户。如果您在几分钟内没有收到电子邮件，请检查您的垃圾邮件或垃圾文件夹。</value>
+  </data>
+  <data name="Time zone" xml:space="preserve">
+    <value>时区</value>
+  </data>
+  <data name="To disable, click here." xml:space="preserve">
+    <value>点击这里禁用。</value>
+  </data>
+  <data name="To use an authenticator app go through the following steps:" xml:space="preserve">
+    <value>要使用验证器应用程序，请按照以下步骤操作：</value>
+  </data>
+  <data name="Two-factor authentication" xml:space="preserve">
+    <value>两步验证</value>
+  </data>
+  <data name="Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to sign in. Learn more about two-factor authentication." xml:space="preserve">
+    <value>两步验证通过要求输入密码以外的内容来为您的账户添加额外的一层安全保护。了解更多关于两步验证的信息。</value>
+  </data>
+  <data name="Two-factor methods" xml:space="preserve">
+    <value>两步验证方法</value>
+  </data>
+  <data name="Type your password to confirm changing your email address to" xml:space="preserve">
+    <value>输入您的密码以确认更改电子邮件地址为</value>
+  </data>
+  <data name="UOM" xml:space="preserve">
+    <value>单位</value>
+  </data>
+  <data name="Uom is required" xml:space="preserve">
+    <value>单位是必需的</value>
+  </data>
+  <data name="Use an authentication app or browser extension to get two-factor authentication codes when prompted." xml:space="preserve">
+    <value>在提示时，使用身份验证应用程序或浏览器扩展程序获取两步验证代码。</value>
+  </data>
+  <data name="User name" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="User name is required!" xml:space="preserve">
+    <value>用户名是必需的！</value>
+  </data>
+  <data name="Verification Code" xml:space="preserve">
+    <value>验证码</value>
+  </data>
+  <data name="Verify" xml:space="preserve">
+    <value>验证</value>
+  </data>
+  <data name="Very practical, convenient and user-friendly library that has massively helped us in developing our applications. Great community as well!" xml:space="preserve">
+    <value>非常实用、方便且用户友好的库，大大帮助了我们开发应用程序。社区也很棒！</value>
+  </data>
+  <data name="View all available products in our inventory." xml:space="preserve">
+    <value>查看我们库存中的所有可用产品。</value>
+  </data>
+  <data name="We've sent an email to the address you provided. Please check your inbox for a link to reset your password. If you don't see the email, be sure to check your spam or junk folder." xml:space="preserve">
+    <value>我们已向您提供的地址发送了一封电子邮件。请检查您的收件箱以获取密码重置链接。如果您没有看到电子邮件，请检查您的垃圾邮件或垃圾文件夹。</value>
+  </data>
+  <data name="Write a message that goes with a kitten gif for a friend on a rough day" xml:space="preserve">
+    <value>写一条配有小猫动图的消息给一个正经历困难的朋友</value>
+  </data>
+  <data name="Write a text inviting my neighbors to a barbecue" xml:space="preserve">
+    <value>写一条邀请邻居参加烧烤的短信</value>
+  </data>
+  <data name="You must remove yourself, transfer ownership, or delete these organizations before you can delete your user." xml:space="preserve">
+    <value>在删除用户之前，您必须移除自己、转移所有权或删除这些组织。</value>
+  </data>
+  <data name="external login" xml:space="preserve">
+    <value>外部登录</value>
+  </data>
+  <data name="user name is required" xml:space="preserve">
+    <value>需要用户名</value>
+  </data>
+  <data name="Application" xml:space="preserve">
+    <value>应用程序</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>产品</value>
+  </data>
+  <data name="All Products" xml:space="preserve">
+    <value>所有产品</value>
+  </data>
+  <data name="Stock Inquiry" xml:space="preserve">
+    <value>库存查询</value>
+  </data>
+  <data name="Check product stock levels." xml:space="preserve">
+    <value>检查产品库存水平。</value>
+  </data>
+  <data name="Best Sellers" xml:space="preserve">
+    <value>畅销商品</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>订单</value>
+  </data>
+  <data name="Order Overview" xml:space="preserve">
+    <value>订单概览</value>
+  </data>
+  <data name="Overview of all customer orders." xml:space="preserve">
+    <value>所有客户订单的概览。</value>
+  </data>
+  <data name="Shipment Details" xml:space="preserve">
+    <value>发货详情</value>
+  </data>
+  <data name="Track the shipment details of orders." xml:space="preserve">
+    <value>跟踪订单的发货详情。</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>报告</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>概览</value>
+  </data>
+  <data name="View an overview of all reports." xml:space="preserve">
+    <value>查看所有报告的概览。</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>统计数据</value>
+  </data>
+  <data name="Analyze detailed statistics for performance tracking." xml:space="preserve">
+    <value>分析详细统计数据以进行绩效跟踪。</value>
+  </data>
+  <data name="Activity Log" xml:space="preserve">
+    <value>活动日志</value>
+  </data>
+  <data name="View the activity log for user actions." xml:space="preserve">
+    <value>查看用户操作的活动日志。</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>帮助</value>
+  </data>
+  <data name="Documentation" xml:space="preserve">
+    <value>文档</value>
+  </data>
+  <data name="Access the user and developer documentation." xml:space="preserve">
+    <value>访问用户和开发者文档。</value>
+  </data>
+  <data name="GitHub" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="Visit our GitHub repository." xml:space="preserve">
+    <value>访问我们的 GitHub 仓库。</value>
+  </data>
+  <data name="Blazor Aspire" xml:space="preserve">
+    <value>Blazor 渴望</value>
+  </data>
+  <data name="Product is required." xml:space="preserve">
+    <value>产品是必需的</value>
+  </data>
+  <data name="Location is required." xml:space="preserve">
+    <value>位置是必需的</value>
+  </data>
+  <data name="Quantity must be greater than 0." xml:space="preserve">
+    <value>数量必须大于0</value>
+  </data>
+  <data name="Stock received successfully." xml:space="preserve">
+    <value>库存接收成功</value>
+  </data>
+  <data name="Stock dispatched successfully." xml:space="preserve">
+    <value>库存发货成功</value>
+  </data>
+  <data name="Commands" xml:space="preserve">
+    <value>命令</value>
+  </data>
+  <data name="Product Name" xml:space="preserve">
+    <value>产品名称</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>位置</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="Receiving" xml:space="preserve">
+    <value>收货</value>
+  </data>
+  <data name="Stock receiving" xml:space="preserve">
+    <value>收货</value>
+  </data>
+  <data name="Stock dispatching" xml:space="preserve">
+    <value>发货</value>
+  </data>
+</root>

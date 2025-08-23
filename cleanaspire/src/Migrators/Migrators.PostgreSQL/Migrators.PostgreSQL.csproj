@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	  <AssemblyName>CleanAspire.Migrators.PostgreSQL</AssemblyName>
+	  <RootNamespace>CleanAspire.Migrators.PostgreSQL</RootNamespace>
+  </PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\CleanAspire.Infrastructure\CleanAspire.Infrastructure.csproj" />
+	</ItemGroup>
+</Project>

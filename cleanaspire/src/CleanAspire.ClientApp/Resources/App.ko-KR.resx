@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="A comprehensive library. Takes the hassle out of designing for Blazor. Used in many ongoing projects at the Mail Solutions Group. The MudBlazor team has a real gem here." xml:space="preserve">
+    <value>진행 중인 프로젝트에서 사용되고 있습니다. MudBlazor 팀은 진정한 보석을 가지고 있습니다.</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>계정</value>
+  </data>
+  <data name="Activating offline mode grants access to critical features and data without the need for an active internet connection. This feature is ideal for environments where connectivity is unreliable or unavailable. Ensure your device is secure to prevent potential data risks." xml:space="preserve">
+    <value>오프라인 모드를 활성화하면 활성 인터넷 연결 없이 중요한 기능과 데이터에 액세스할 수 있습니다. 이 기능은 연결이 불안정하거나 사용할 수 없는 환경에 이상적입니다. 데이터 위험을 방지하려면 기기의 보안을 유지하세요.</value>
+  </data>
+  <data name="Add a profile picture to personalize your account" xml:space="preserve">
+    <value>프로필 사진을 추가하여 계정을 개인화하세요.</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>금액</value>
+  </data>
+  <data name="Are you sure you want to delete your account? This action cannot be undone." xml:space="preserve">
+    <value>계정을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.</value>
+  </data>
+  <data name="Authenticating, please wait..." xml:space="preserve">
+    <value>인증 중입니다. 잠시만 기다려주세요...</value>
+  </data>
+  <data name="Authenticator app" xml:space="preserve">
+    <value>인증 앱</value>
+  </data>
+  <data name="Authenticator code" xml:space="preserve">
+    <value>인증 코드가 필요합니다.</value>
+  </data>
+  <data name="Authenticator code is required" xml:space="preserve">
+    <value>인증 코드는 필수 항목입니다.</value>
+  </data>
+  <data name="Basic info" xml:space="preserve">
+    <value>기본 정보</value>
+  </data>
+  <data name="Best open source component library for Blazor out there and easy to understand!" xml:space="preserve">
+    <value>Blazor를 위한 최고의 오픈 소스 컴포넌트 라이브러리이며 이해하기 쉽습니다!</value>
+  </data>
+  <data name="Button Text" xml:space="preserve">
+    <value>버튼 텍스트</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>카테고리</value>
+  </data>
+  <data name="Category is required" xml:space="preserve">
+    <value>카테고리는 필수 항목입니다.</value>
+  </data>
+  <data name="Change Your Email" xml:space="preserve">
+    <value>이메일 변경</value>
+  </data>
+  <data name="Change email" xml:space="preserve">
+    <value>이메일 변경</value>
+  </data>
+  <data name="Change email confirm" xml:space="preserve">
+    <value>이메일 변경 확인</value>
+  </data>
+  <data name="Change my email" xml:space="preserve">
+    <value>이메일 변경하기</value>
+  </data>
+  <data name="Changing your username can have unintended side effects." xml:space="preserve">
+    <value>사용자 이름을 변경하면 예기치 않은 부작용이 발생할 수 있습니다.</value>
+  </data>
+  <data name="Check Your Inbox" xml:space="preserve">
+    <value>받은 편지함을 확인하세요.</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>닫기</value>
+  </data>
+  <data name="Coming of an Angular project back to .NET, Blazor was the ideal choice and MudBlazor was the icing on the cake. . . not \&quot;mud\&quot; but a rich creamy sweet chocolate." xml:space="preserve">
+    <value>Angular 프로젝트에서 .NET으로 돌아오면서 Blazor는 이상적인 선택이었고 MudBlazor는 그 위에 얹어진 아이싱과도 같았습니다.</value>
+  </data>
+  <data name="Comprehensive, ambitious, fresh and clean. Some really cool implementations. The development and improvement of components is really fast, and if a course correction is needed, they will do it. Garderoben, henon and all the other contributors are approachable. They are getting stuff done!" xml:space="preserve">
+    <value>포괄적이고 야심차며 신선하고 깔끔합니다. 정말 멋진 구현이 몇 가지 있습니다. 컴포넌트 개발 및 개선 속도가 매우 빠르며, 방향 수정이 필요하면 바로 진행됩니다. Garderoben, henon 및 기타 모든 기여자는 접근하기 쉽고 일을 제대로 처리하고 있습니다!</value>
+  </data>
+  <data name="Configure Authenticator App" xml:space="preserve">
+    <value>인증 앱 구성</value>
+  </data>
+  <data name="Confirm Verification" xml:space="preserve">
+    <value>인증 확인</value>
+  </data>
+  <data name="Confirm new email" xml:space="preserve">
+    <value>새 이메일 확인</value>
+  </data>
+  <data name="Confirm password" xml:space="preserve">
+    <value>비밀번호 확인</value>
+  </data>
+  <data name="Confirm password is required" xml:space="preserve">
+    <value>비밀번호 확인은 필수 항목입니다.</value>
+  </data>
+  <data name="Confirm password reset" xml:space="preserve">
+    <value>비밀번호 재설정 확인</value>
+  </data>
+  <data name="Copy Codes to Clipboard" xml:space="preserve">
+    <value>코드를 클립보드에 복사</value>
+  </data>
+  <data name="Create an Account" xml:space="preserve">
+    <value>계정 만들기</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>통화</value>
+  </data>
+  <data name="Currency is required" xml:space="preserve">
+    <value>통화는 필수 항목입니다.</value>
+  </data>
+  <data name="Customer Name" xml:space="preserve">
+    <value>고객 이름</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>기본값</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>삭제</value>
+  </data>
+  <data name="Delete account" xml:space="preserve">
+    <value>계정 삭제</value>
+  </data>
+  <data name="Delete my account" xml:space="preserve">
+    <value>내 계정 삭제</value>
+  </data>
+  <data name="Delete your account" xml:space="preserve">
+    <value>계정 삭제하기</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>설명</value>
+  </data>
+  <data name="Disable" xml:space="preserve">
+    <value>비활성화</value>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>비활성화됨</value>
+  </data>
+  <data name="Don't have an account?" xml:space="preserve">
+    <value>계정이 없으신가요?</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>편집</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>이메일</value>
+  </data>
+  <data name="Email is required" xml:space="preserve">
+    <value>이메일은 필수 항목입니다.</value>
+  </data>
+  <data name="Email is required!" xml:space="preserve">
+    <value>이메일은 필수입니다!</value>
+  </data>
+  <data name="Enable Offline Mode" xml:space="preserve">
+    <value>오프라인 모드 활성화</value>
+  </data>
+  <data name="Enabling offline mode stores certain data locally to ensure secure authentication and continued access when an internet connection is unavailable. However, local data storage may increase the risk of data breaches if your device is compromised. Please ensure your device is secure to mitigate this risk." xml:space="preserve">
+    <value>오프라인 모드를 활성화하면 인터넷 연결이 불가능할 때도 안전한 인증과 지속적인 액세스를 보장하기 위해 일부 데이터를 로컬에 저장합니다. 그러나 로컬 데이터 저장은 기기가 손상된 경우 데이터 유출 위험을 증가시킬 수 있습니다. 이러한 위험을 줄이기 위해 기기를 안전하게 유지하세요.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>오류</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>내보내기</value>
+  </data>
+  <data name="For enhanced security, two-factor authentication will be required for your account. This helps protect your account with an additional layer of security." xml:space="preserve">
+    <value>보안을 강화하기 위해 계정에는 2단계 인증이 필요합니다. 이를 통해 계정을 추가 보안 레이어로 보호합니다.</value>
+  </data>
+  <data name="Forget password?" xml:space="preserve">
+    <value>비밀번호를 잊으셨나요?</value>
+  </data>
+  <data name="Forgot Password?" xml:space="preserve">
+    <value>비밀번호를 잊으셨나요?</value>
+  </data>
+  <data name="Generate Codes" xml:space="preserve">
+    <value>코드 생성</value>
+  </data>
+  <data name="Generate recovery codes to regain access if you lose your two-factor authentication device." xml:space="preserve">
+    <value>2단계 인증 기기를 분실한 경우 액세스를 복구할 수 있는 복구 코드를 생성합니다.</value>
+  </data>
+  <data name="Give me ideas about how to plan my New Years resolutions" xml:space="preserve">
+    <value>새해 목표를 계획할 아이디어를 주세요.</value>
+  </data>
+  <data name="H1 Title" xml:space="preserve">
+    <value>H1 제목</value>
+  </data>
+  <data name="H2 Title" xml:space="preserve">
+    <value>H2 제목</value>
+  </data>
+  <data name="Have an account?" xml:space="preserve">
+    <value>계정이 있으신가요?</value>
+  </data>
+  <data name="Help me pick an outfit that will look good on camera" xml:space="preserve">
+    <value>카메라에서 잘 보이는 옷을 고르는 데 도움을 주세요.</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>홈</value>
+  </data>
+  <data name="I agree to the terms and privacy" xml:space="preserve">
+    <value>약관 및 개인정보 처리방침에 동의합니다.</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>가져오기</value>
+  </data>
+  <data name="Important: Recovery codes are shown only once and will not be stored on the server. Please save them securely." xml:space="preserve">
+    <value>중요: 복구 코드는 한 번만 표시되며 서버에 저장되지 않습니다. 안전하게 보관하세요.</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>정보</value>
+  </data>
+  <data name="Info about you and your preferences" xml:space="preserve">
+    <value>귀하와 귀하의 선호도에 대한 정보</value>
+  </data>
+  <data name="Invoiced amount" xml:space="preserve">
+    <value>청구 금액</value>
+  </data>
+  <data name="Keywords" xml:space="preserve">
+    <value>키워드</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>언어</value>
+  </data>
+  <data name="Login with Google" xml:space="preserve">
+    <value>Google로 로그인</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>로그아웃</value>
+  </data>
+  <data name="Looking to manage account security settings? You can find them in the Password and authentication page." xml:space="preserve">
+    <value>계정 보안 설정을 관리하려면 비밀번호 및 인증 페이지에서 찾을 수 있습니다.</value>
+  </data>
+  <data name="Make a sandwich using ingredients from my kitchen" xml:space="preserve">
+    <value>내 주방 재료를 사용하여 샌드위치를 만들어주세요.</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>더보기</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>이름</value>
+  </data>
+  <data name="Name is required" xml:space="preserve">
+    <value>이름은 필수 항목입니다.</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>새로운</value>
+  </data>
+  <data name="New email address" xml:space="preserve">
+    <value>새 이메일 주소</value>
+  </data>
+  <data name="New password" xml:space="preserve">
+    <value>새 비밀번호</value>
+  </data>
+  <data name="New password confirm" xml:space="preserve">
+    <value>새 비밀번호 확인</value>
+  </data>
+  <data name="Nickname" xml:space="preserve">
+    <value>닉네임</value>
+  </data>
+  <data name="No recovery codes to copy." xml:space="preserve">
+    <value>복사할 복구 코드가 없습니다.</value>
+  </data>
+  <data name="No worries! Just enter your email address below and we'll send you a link to reset your password." xml:space="preserve">
+    <value>걱정하지 마세요! 아래에 이메일 주소를 입력하면 비밀번호 재설정 링크를 보내드립니다.</value>
+  </data>
+  <data name="Offline Mode" xml:space="preserve">
+    <value>오프라인 모드</value>
+  </data>
+  <data name="Offline mode allows access to essential features without requiring an internet connection, which is particularly useful in areas with limited or no connectivity." xml:space="preserve">
+    <value>오프라인 모드를 사용하면 인터넷 연결 없이 필수 기능에 액세스할 수 있습니다. 이는 연결이 제한적이거나 없는 지역에서 특히 유용합니다.</value>
+  </data>
+  <data name="Order Date" xml:space="preserve">
+    <value>주문 날짜</value>
+  </data>
+  <data name="Order Number" xml:space="preserve">
+    <value>주문 번호</value>
+  </data>
+  <data name="Orders List" xml:space="preserve">
+    <value>주문 목록</value>
+  </data>
+  <data name="Organization" xml:space="preserve">
+    <value>조직</value>
+  </data>
+  <data name="Organization selection is required" xml:space="preserve">
+    <value>조직 선택은 필수 항목입니다.</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>비밀번호</value>
+  </data>
+  <data name="Password is required" xml:space="preserve">
+    <value>비밀번호는 필수 항목입니다.</value>
+  </data>
+  <data name="Personal info" xml:space="preserve">
+    <value>개인 정보</value>
+  </data>
+  <data name="Please type your username to confirm. Your current username is:" xml:space="preserve">
+    <value>확인하려면 사용자 이름을 입력하세요. 현재 사용자 이름:</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>가격</value>
+  </data>
+  <data name="Price is required" xml:space="preserve">
+    <value>가격은 필수 항목입니다.</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>인쇄</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>제품</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>프로필</value>
+  </data>
+  <data name="Profile picture" xml:space="preserve">
+    <value>프로필 사진</value>
+  </data>
+  <data name="Public profile" xml:space="preserve">
+    <value>공개 프로필</value>
+  </data>
+  <data name="Quiz me on world capitals to enhance my geography skills" xml:space="preserve">
+    <value>지리 지식을 향상시키기 위해 세계 수도에 대한 퀴즈를 제안해주세요.</value>
+  </data>
+  <data name="Recovery codes" xml:space="preserve">
+    <value>복구 코드</value>
+  </data>
+  <data name="Recovery codes copied to clipboard!" xml:space="preserve">
+    <value>복구 코드가 클립보드에 복사되었습니다!</value>
+  </data>
+  <data name="Recovery codes generated. Save them securely as they will not be shown again." xml:space="preserve">
+    <value>복구 코드가 생성되었습니다. 다시 표시되지 않으니 안전하게 저장하세요.</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>새로고침</value>
+  </data>
+  <data name="Remember me" xml:space="preserve">
+    <value>날 기억해줘</value>
+  </data>
+  <data name="SKU" xml:space="preserve">
+    <value>SKU</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>저장</value>
+  </data>
+  <data name="Save Profile" xml:space="preserve">
+    <value>프로필 저장</value>
+  </data>
+  <data name="Saving us from tons of tiny details and allowing us to deliver sharp looking modern web applications, MudBlazor is the king of open source UI frameworks that no one should miss when building apps with Blazor!" xml:space="preserve">
+    <value>MudBlazor는 수많은 세부 사항에서 우리를 구원하고 현대적이고 세련된 웹 애플리케이션을 제공할 수 있도록 합니다. MudBlazor는 Blazor로 앱을 구축할 때 놓쳐서는 안 될 오픈 소스 UI 프레임워크의 왕입니다!</value>
+  </data>
+  <data name="Secondary" xml:space="preserve">
+    <value>보조</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>보안</value>
+  </data>
+  <data name="Select Organization" xml:space="preserve">
+    <value>조직 선택</value>
+  </data>
+  <data name="Send Email" xml:space="preserve">
+    <value>이메일 보내기</value>
+  </data>
+  <data name="Send Notifications" xml:space="preserve">
+    <value>알림 보내기</value>
+  </data>
+  <data name="Set new password" xml:space="preserve">
+    <value>새 비밀번호 설정</value>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>설정</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>설정</value>
+  </data>
+  <data name="Sign In" xml:space="preserve">
+    <value>로그인</value>
+  </data>
+  <data name="Signup" xml:space="preserve">
+    <value>가입</value>
+  </data>
+  <data name="Signup Successful" xml:space="preserve">
+    <value>가입 성공</value>
+  </data>
+  <data name="Sku is required" xml:space="preserve">
+    <value>SKU는 필수 항목입니다.</value>
+  </data>
+  <data name="Some info may be visible to other people using Google services. Learn more" xml:space="preserve">
+    <value>Google 서비스를 사용하는 다른 사람들에게 일부 정보가 표시될 수 있습니다. 자세히 알아보기</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>상태</value>
+  </data>
+  <data name="Suggest fun activities to help me make friends in a new city" xml:space="preserve">
+    <value>새로운 도시에서 친구를 사귀는 재미있는 활동을 제안해주세요.</value>
+  </data>
+  <data name="Tell me a fun fact about the Roman Empire" xml:space="preserve">
+    <value>로마 제국에 대한 재미있는 사실을 알려주세요.</value>
+  </data>
+  <data name="Thank you for signing up. To complete your registration, please activate your account by clicking the activation link sent to your email address. If you do not receive the email within a few minutes, please check your spam or junk folder." xml:space="preserve">
+    <value>가입해 주셔서 감사합니다. 등록을 완료하려면 이메일 주소로 전송된 활성화 링크를 클릭하세요. 몇 분 안에 이메일을 받지 못한 경우 스팸 또는 정크 폴더를 확인하세요.</value>
+  </data>
+  <data name="Time zone" xml:space="preserve">
+    <value>시간대</value>
+  </data>
+  <data name="To disable, click here." xml:space="preserve">
+    <value>비활성화하려면 여기를 클릭하세요.</value>
+  </data>
+  <data name="To use an authenticator app go through the following steps:" xml:space="preserve">
+    <value>인증 앱을 사용하려면 다음 단계를 따르세요.</value>
+  </data>
+  <data name="Two-factor authentication" xml:space="preserve">
+    <value>2단계 인증</value>
+  </data>
+  <data name="Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to sign in. Learn more about two-factor authentication." xml:space="preserve">
+    <value>2단계 인증은 비밀번호만 요구하는 것 이상의 추가 보안 레이어를 통해 계정을 보호합니다. 2단계 인증에 대해 자세히 알아보세요.</value>
+  </data>
+  <data name="Two-factor methods" xml:space="preserve">
+    <value>2단계 인증 방법</value>
+  </data>
+  <data name="Type your password to confirm changing your email address to" xml:space="preserve">
+    <value>이메일 주소 변경을 확인하려면 비밀번호를 입력하세요.</value>
+  </data>
+  <data name="UOM" xml:space="preserve">
+    <value>단위</value>
+  </data>
+  <data name="Uom is required" xml:space="preserve">
+    <value>단위는 필수 항목입니다.</value>
+  </data>
+  <data name="Use an authentication app or browser extension to get two-factor authentication codes when prompted." xml:space="preserve">
+    <value>2단계 인증 코드가 필요할 때 인증 앱 또는 브라우저 확장을 사용하세요.</value>
+  </data>
+  <data name="User name" xml:space="preserve">
+    <value>사용자 이름</value>
+  </data>
+  <data name="User name is required!" xml:space="preserve">
+    <value>사용자 이름은 필수 항목입니다!</value>
+  </data>
+  <data name="Verification Code" xml:space="preserve">
+    <value>인증 코드</value>
+  </data>
+  <data name="Verify" xml:space="preserve">
+    <value>확인</value>
+  </data>
+  <data name="Very practical, convenient and user-friendly library that has massively helped us in developing our applications. Great community as well!" xml:space="preserve">
+    <value>매우 실용적이고 편리하며 사용자 친화적인 라이브러리로 애플리케이션 개발에 크게 도움이 되었습니다. 커뮤니티도 훌륭합니다!</value>
+  </data>
+  <data name="View all available products in our inventory." xml:space="preserve">
+    <value>재고에 있는 모든 이용 가능한 제품을 확인하세요.</value>
+  </data>
+  <data name="We've sent an email to the address you provided. Please check your inbox for a link to reset your password. If you don't see the email, be sure to check your spam or junk folder." xml:space="preserve">
+    <value>제공된 주소로 이메일을 보냈습니다. 받은 편지함에서 비밀번호 재설정 링크를 확인하세요. 이메일을 찾을 수 없는 경우 스팸 또는 정크 폴더를 확인하세요.</value>
+  </data>
+  <data name="Write a message that goes with a kitten gif for a friend on a rough day" xml:space="preserve">
+    <value>힘든 날을 보내는 친구를 위해 고양이 GIF와 함께 메시지를 작성하세요.</value>
+  </data>
+  <data name="Write a text inviting my neighbors to a barbecue" xml:space="preserve">
+    <value>이웃을 바비큐에 초대하는 메시지를 작성하세요.</value>
+  </data>
+  <data name="You must remove yourself, transfer ownership, or delete these organizations before you can delete your user." xml:space="preserve">
+    <value>사용자를 삭제하기 전에 자신을 제거하거나 소유권을 이전하거나 이 조직을 삭제해야 합니다.</value>
+  </data>
+  <data name="external login" xml:space="preserve">
+    <value>외부 로그인</value>
+  </data>
+  <data name="user name is required" xml:space="preserve">
+    <value>사용자 이름은 필수 항목입니다.</value>
+  </data>
+  <data name="Application" xml:space="preserve">
+    <value>애플리케이션</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>제품</value>
+  </data>
+  <data name="All Products" xml:space="preserve">
+    <value>모든 제품</value>
+  </data>
+  <data name="Stock Inquiry" xml:space="preserve">
+    <value>재고 문의</value>
+  </data>
+  <data name="Check product stock levels." xml:space="preserve">
+    <value>제품의 재고 수준을 확인하세요.</value>
+  </data>
+  <data name="Best Sellers" xml:space="preserve">
+    <value>베스트셀러</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>주문</value>
+  </data>
+  <data name="Order Overview" xml:space="preserve">
+    <value>주문 개요</value>
+  </data>
+  <data name="Overview of all customer orders." xml:space="preserve">
+    <value>모든 고객 주문의 개요를 확인하세요.</value>
+  </data>
+  <data name="Shipment Details" xml:space="preserve">
+    <value>배송 세부 정보</value>
+  </data>
+  <data name="Track the shipment details of orders." xml:space="preserve">
+    <value>주문의 배송 세부 정보를 추적하세요.</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>보고서</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>개요</value>
+  </data>
+  <data name="View an overview of all reports." xml:space="preserve">
+    <value>모든 보고서의 개요를 확인하세요.</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>통계</value>
+  </data>
+  <data name="Analyze detailed statistics for performance tracking." xml:space="preserve">
+    <value>성과 추적을 위한 상세 통계를 분석하세요.</value>
+  </data>
+  <data name="Activity Log" xml:space="preserve">
+    <value>활동 로그</value>
+  </data>
+  <data name="View the activity log for user actions." xml:space="preserve">
+    <value>사용자 작업의 활동 로그를 확인하세요.</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>도움말</value>
+  </data>
+  <data name="Documentation" xml:space="preserve">
+    <value>문서</value>
+  </data>
+  <data name="Access the user and developer documentation." xml:space="preserve">
+    <value>사용자 및 개발자 문서에 액세스하세요.</value>
+  </data>
+  <data name="GitHub" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="Visit our GitHub repository." xml:space="preserve">
+    <value>GitHub 저장소를 방문하세요.</value>
+  </data>
+  <data name="Blazor Aspire" xml:space="preserve">
+    <value>블레이저 어스파이어</value>
+  </data>
+  <data name="Product is required." xml:space="preserve">
+    <value>제품이 필요합니다</value>
+  </data>
+  <data name="Location is required." xml:space="preserve">
+    <value>위치가 필요합니다</value>
+  </data>
+  <data name="Quantity must be greater than 0." xml:space="preserve">
+    <value>수량은 0보다 커야 합니다</value>
+  </data>
+  <data name="Stock received successfully." xml:space="preserve">
+    <value>재고가 성공적으로 입고되었습니다</value>
+  </data>
+  <data name="Stock dispatched successfully." xml:space="preserve">
+    <value>재고가 성공적으로 출고되었습니다</value>
+  </data>
+  <data name="Commands" xml:space="preserve">
+    <value>명령</value>
+  </data>
+  <data name="Product Name" xml:space="preserve">
+    <value>제품 이름</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>위치</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>수량</value>
+  </data>
+  <data name="Receiving" xml:space="preserve">
+    <value>수령</value>
+  </data>
+  <data name="Stock receiving" xml:space="preserve">
+    <value>재고 수령</value>
+  </data>
+  <data name="Stock dispatching" xml:space="preserve">
+    <value>재고 출고</value>
+  </data>
+</root>

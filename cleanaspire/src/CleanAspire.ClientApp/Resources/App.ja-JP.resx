@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="A comprehensive library. Takes the hassle out of designing for Blazor. Used in many ongoing projects at the Mail Solutions Group. The MudBlazor team has a real gem here." xml:space="preserve">
+    <value>ロジェクトで使用されています。MudBlazor チームは本当に宝石を持っています。</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>アカウント</value>
+  </data>
+  <data name="Activating offline mode grants access to critical features and data without the need for an active internet connection. This feature is ideal for environments where connectivity is unreliable or unavailable. Ensure your device is secure to prevent potential data risks." xml:space="preserve">
+    <value>オフラインモードを有効にすると、インターネット接続がなくても重要な機能やデータにアクセスできます。この機能は、接続が不安定または利用できない環境に最適です。デバイスを安全に保ち、データリスクを防ぎましょう。</value>
+  </data>
+  <data name="Add a profile picture to personalize your account" xml:space="preserve">
+    <value>プロフィール画像を追加してアカウントを個人化する</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>金額</value>
+  </data>
+  <data name="Are you sure you want to delete your account? This action cannot be undone." xml:space="preserve">
+    <value>本当にアカウントを削除しますか？この操作は元に戻せません。</value>
+  </data>
+  <data name="Authenticating, please wait..." xml:space="preserve">
+    <value>認証中、お待ちください…</value>
+  </data>
+  <data name="Authenticator app" xml:space="preserve">
+    <value>認証アプリ</value>
+  </data>
+  <data name="Authenticator code" xml:space="preserve">
+    <value>認証コードが必要です</value>
+  </data>
+  <data name="Authenticator code is required" xml:space="preserve">
+    <value>認証コードは必須です</value>
+  </data>
+  <data name="Basic info" xml:space="preserve">
+    <value>基本情報</value>
+  </data>
+  <data name="Best open source component library for Blazor out there and easy to understand!" xml:space="preserve">
+    <value>最高の Blazor オープンソースコンポーネントライブラリで、簡単に理解できます！</value>
+  </data>
+  <data name="Button Text" xml:space="preserve">
+    <value>ボタンテキスト</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>カテゴリー</value>
+  </data>
+  <data name="Category is required" xml:space="preserve">
+    <value>カテゴリーは必須です</value>
+  </data>
+  <data name="Change Your Email" xml:space="preserve">
+    <value>メールアドレスを変更する</value>
+  </data>
+  <data name="Change email" xml:space="preserve">
+    <value>メールアドレスを変更</value>
+  </data>
+  <data name="Change email confirm" xml:space="preserve">
+    <value>メール変更を確認</value>
+  </data>
+  <data name="Change my email" xml:space="preserve">
+    <value>メールを変更する</value>
+  </data>
+  <data name="Changing your username can have unintended side effects." xml:space="preserve">
+    <value>ユーザー名を変更すると予期しない影響を受ける可能性があります。</value>
+  </data>
+  <data name="Check Your Inbox" xml:space="preserve">
+    <value>受信トレイを確認してください</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="Coming of an Angular project back to .NET, Blazor was the ideal choice and MudBlazor was the icing on the cake. . . not \&quot;mud\&quot; but a rich creamy sweet chocolate." xml:space="preserve">
+    <value>Angular プロジェクトから .NET に戻ると、Blazor が理想的な選択であり、MudBlazor はその上に甘いチョコレートを塗るようなものでした。</value>
+  </data>
+  <data name="Comprehensive, ambitious, fresh and clean. Some really cool implementations. The development and improvement of components is really fast, and if a course correction is needed, they will do it. Garderoben, henon and all the other contributors are approachable. They are getting stuff done!" xml:space="preserve">
+    <value>包括的で野心的、新鮮で清潔。一部の非常にクールな実装。コンポーネントの開発と改善の速度は非常に速く、方向修正が必要な場合はすぐに行います。Garderoben、henon、およびその他すべての寄稿者は親しみやすく、彼らは仕事を成し遂げています！</value>
+  </data>
+  <data name="Configure Authenticator App" xml:space="preserve">
+    <value>認証アプリを設定する</value>
+  </data>
+  <data name="Confirm Verification" xml:space="preserve">
+    <value>確認を完了</value>
+  </data>
+  <data name="Confirm new email" xml:space="preserve">
+    <value>新しいメールアドレスを確認</value>
+  </data>
+  <data name="Confirm password" xml:space="preserve">
+    <value>パスワードを確認</value>
+  </data>
+  <data name="Confirm password is required" xml:space="preserve">
+    <value>パスワードの確認は必須です</value>
+  </data>
+  <data name="Confirm password reset" xml:space="preserve">
+    <value>パスワードリセットを確認</value>
+  </data>
+  <data name="Copy Codes to Clipboard" xml:space="preserve">
+    <value>コードをクリップボードにコピー</value>
+  </data>
+  <data name="Create an Account" xml:space="preserve">
+    <value>アカウントを作成</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>通貨</value>
+  </data>
+  <data name="Currency is required" xml:space="preserve">
+    <value>通貨は必須です</value>
+  </data>
+  <data name="Customer Name" xml:space="preserve">
+    <value>顧客名</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>デフォルト</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="Delete account" xml:space="preserve">
+    <value>アカウントを削除</value>
+  </data>
+  <data name="Delete my account" xml:space="preserve">
+    <value>アカウントを削除する</value>
+  </data>
+  <data name="Delete your account" xml:space="preserve">
+    <value>アカウントを削除する</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>説明</value>
+  </data>
+  <data name="Disable" xml:space="preserve">
+    <value>無効にする</value>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>無効化されました</value>
+  </data>
+  <data name="Don't have an account?" xml:space="preserve">
+    <value>アカウントを持っていませんか？</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>編集する</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>メールアドレス</value>
+  </data>
+  <data name="Email is required" xml:space="preserve">
+    <value>メールアドレスは必須です</value>
+  </data>
+  <data name="Email is required!" xml:space="preserve">
+    <value>メールアドレスは必須です！</value>
+  </data>
+  <data name="Enable Offline Mode" xml:space="preserve">
+    <value>オフラインモードを有効にする</value>
+  </data>
+  <data name="Enabling offline mode stores certain data locally to ensure secure authentication and continued access when an internet connection is unavailable. However, local data storage may increase the risk of data breaches if your device is compromised. Please ensure your device is secure to mitigate this risk." xml:space="preserve">
+    <value>オフラインモードを有効にすると、一定のデータがローカルに保存され、インターネット接続が利用できない場合でも安全な認証と継続的なアクセスが可能になります。ただし、デバイスが危険にさらされた場合、ローカルデータストレージはデータ漏洩のリスクを増加させる可能性があります。デバイスを安全に保つことでこのリスクを軽減してください。</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>エラー</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>エクスポート</value>
+  </data>
+  <data name="For enhanced security, two-factor authentication will be required for your account. This helps protect your account with an additional layer of security." xml:space="preserve">
+    <value>セキュリティを強化するために、アカウントには二要素認証が必要になります。これにより、追加のセキュリティレイヤーがアカウントを保護します。</value>
+  </data>
+  <data name="Forget password?" xml:space="preserve">
+    <value>パスワードをお忘れですか？</value>
+  </data>
+  <data name="Forgot Password?" xml:space="preserve">
+    <value>パスワードをお忘れですか？</value>
+  </data>
+  <data name="Generate Codes" xml:space="preserve">
+    <value>コードを生成する</value>
+  </data>
+  <data name="Generate recovery codes to regain access if you lose your two-factor authentication device." xml:space="preserve">
+    <value>二要素認証デバイスを紛失した場合にアクセスを回復するためのリカバリーコードを生成します。</value>
+  </data>
+  <data name="Give me ideas about how to plan my New Years resolutions" xml:space="preserve">
+    <value>新年の目標を計画するためのアイデアをください</value>
+  </data>
+  <data name="H1 Title" xml:space="preserve">
+    <value>H1 タイトル</value>
+  </data>
+  <data name="H2 Title" xml:space="preserve">
+    <value>H2 タイトル</value>
+  </data>
+  <data name="Have an account?" xml:space="preserve">
+    <value>アカウントを持っていますか？</value>
+  </data>
+  <data name="Help me pick an outfit that will look good on camera" xml:space="preserve">
+    <value>カメラ映えする服を選ぶ手伝いをしてください</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>ホーム</value>
+  </data>
+  <data name="I agree to the terms and privacy" xml:space="preserve">
+    <value>利用規約とプライバシーに同意します</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>インポート</value>
+  </data>
+  <data name="Important: Recovery codes are shown only once and will not be stored on the server. Please save them securely." xml:space="preserve">
+    <value>重要：リカバリーコードは一度だけ表示され、サーバーには保存されません。安全に保管してください。</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>情報</value>
+  </data>
+  <data name="Info about you and your preferences" xml:space="preserve">
+    <value>あなたとあなたの設定に関する情報</value>
+  </data>
+  <data name="Invoiced amount" xml:space="preserve">
+    <value>請求額</value>
+  </data>
+  <data name="Keywords" xml:space="preserve">
+    <value>キーワード</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>言語</value>
+  </data>
+  <data name="Login with Google" xml:space="preserve">
+    <value>Google でログイン</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>ログアウト</value>
+  </data>
+  <data name="Looking to manage account security settings? You can find them in the Password and authentication page." xml:space="preserve">
+    <value>アカウントのセキュリティ設定を管理したいですか？それらはパスワードと認証ページで見つけることができます。</value>
+  </data>
+  <data name="Make a sandwich using ingredients from my kitchen" xml:space="preserve">
+    <value>台所の材料を使ってサンドイッチを作る</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>その他</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="Name is required" xml:space="preserve">
+    <value>名前は必須です</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>新しい</value>
+  </data>
+  <data name="New email address" xml:space="preserve">
+    <value>新しいメールアドレス</value>
+  </data>
+  <data name="New password" xml:space="preserve">
+    <value>新しいパスワード</value>
+  </data>
+  <data name="New password confirm" xml:space="preserve">
+    <value>新しいパスワードを確認</value>
+  </data>
+  <data name="Nickname" xml:space="preserve">
+    <value>ニックネーム</value>
+  </data>
+  <data name="No recovery codes to copy." xml:space="preserve">
+    <value>コピーするリカバリーコードはありません。</value>
+  </data>
+  <data name="No worries! Just enter your email address below and we'll send you a link to reset your password." xml:space="preserve">
+    <value>心配しないでください！以下にメールアドレスを入力するだけで、パスワードをリセットするリンクを送信します。</value>
+  </data>
+  <data name="Offline Mode" xml:space="preserve">
+    <value>オフラインモード</value>
+  </data>
+  <data name="Offline mode allows access to essential features without requiring an internet connection, which is particularly useful in areas with limited or no connectivity." xml:space="preserve">
+    <value>オフラインモードでは、インターネット接続が不要で基本機能にアクセスできます。特に接続が制限されているか、まったくない地域で便利です。</value>
+  </data>
+  <data name="Order Date" xml:space="preserve">
+    <value>注文日</value>
+  </data>
+  <data name="Order Number" xml:space="preserve">
+    <value>注文番号</value>
+  </data>
+  <data name="Orders List" xml:space="preserve">
+    <value>注文一覧</value>
+  </data>
+  <data name="Organization" xml:space="preserve">
+    <value>組織</value>
+  </data>
+  <data name="Organization selection is required" xml:space="preserve">
+    <value>組織選択は必須です</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>パスワード</value>
+  </data>
+  <data name="Password is required" xml:space="preserve">
+    <value>パスワードは必須です</value>
+  </data>
+  <data name="Personal info" xml:space="preserve">
+    <value>個人情報</value>
+  </data>
+  <data name="Please type your username to confirm. Your current username is:" xml:space="preserve">
+    <value>確認するには、ユーザー名を入力してください。現在のユーザー名は：</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>価格</value>
+  </data>
+  <data name="Price is required" xml:space="preserve">
+    <value>価格は必須です</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>印刷</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>製品</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>プロフィール</value>
+  </data>
+  <data name="Profile picture" xml:space="preserve">
+    <value>プロフィール画像</value>
+  </data>
+  <data name="Public profile" xml:space="preserve">
+    <value>公開プロフィール</value>
+  </data>
+  <data name="Quiz me on world capitals to enhance my geography skills" xml:space="preserve">
+    <value>地理スキルを向上させるために世界の首都に関するクイズを出してください</value>
+  </data>
+  <data name="Recovery codes" xml:space="preserve">
+    <value>リカバリーコード</value>
+  </data>
+  <data name="Recovery codes copied to clipboard!" xml:space="preserve">
+    <value>リカバリーコードがクリップボードにコピーされました！</value>
+  </data>
+  <data name="Recovery codes generated. Save them securely as they will not be shown again." xml:space="preserve">
+    <value>リカバリーコードが生成されました。再表示されないので安全に保管してください。</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>更新する</value>
+  </data>
+  <data name="Remember me" xml:space="preserve">
+    <value>私を覚えていてください</value>
+  </data>
+  <data name="SKU" xml:space="preserve">
+    <value>SKU</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>保存する</value>
+  </data>
+  <data name="Save Profile" xml:space="preserve">
+    <value>プロフィールを保存する</value>
+  </data>
+  <data name="Saving us from tons of tiny details and allowing us to deliver sharp looking modern web applications, MudBlazor is the king of open source UI frameworks that no one should miss when building apps with Blazor!" xml:space="preserve">
+    <value>MudBlazor は、膨大な細かい詳細から私たちを救い、現代的で洗練されたウェブアプリケーションを提供できるオープンソースの UI フレームワークの王者です。Blazor を使用してアプリを構築する際には欠かせません！</value>
+  </data>
+  <data name="Secondary" xml:space="preserve">
+    <value>二次的な</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>セキュリティ</value>
+  </data>
+  <data name="Select Organization" xml:space="preserve">
+    <value>組織を選択</value>
+  </data>
+  <data name="Send Email" xml:space="preserve">
+    <value>メールを送る</value>
+  </data>
+  <data name="Send Notifications" xml:space="preserve">
+    <value>通知を送信</value>
+  </data>
+  <data name="Set new password" xml:space="preserve">
+    <value>新しいパスワードを設定</value>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="Sign In" xml:space="preserve">
+    <value>サインイン</value>
+  </data>
+  <data name="Signup" xml:space="preserve">
+    <value>サインアップ</value>
+  </data>
+  <data name="Signup Successful" xml:space="preserve">
+    <value>登録成功</value>
+  </data>
+  <data name="Sku is required" xml:space="preserve">
+    <value>SKU は必須です</value>
+  </data>
+  <data name="Some info may be visible to other people using Google services. Learn more" xml:space="preserve">
+    <value>一部の情報は Google サービスを利用している他の人に表示される場合があります。詳細を確認</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>ステータス</value>
+  </data>
+  <data name="Suggest fun activities to help me make friends in a new city" xml:space="preserve">
+    <value>新しい街で友達を作るための楽しい活動を提案してください</value>
+  </data>
+  <data name="Tell me a fun fact about the Roman Empire" xml:space="preserve">
+    <value>ローマ帝国に関する面白い事実を教えてください</value>
+  </data>
+  <data name="Thank you for signing up. To complete your registration, please activate your account by clicking the activation link sent to your email address. If you do not receive the email within a few minutes, please check your spam or junk folder." xml:space="preserve">
+    <value>ご登録ありがとうございます。登録を完了するには、メールアドレスに送信されたアクティベーションリンクをクリックしてください。数分以内にメールが届かない場合は、迷惑メールフォルダを確認してください。</value>
+  </data>
+  <data name="Time zone" xml:space="preserve">
+    <value>タイムゾーン</value>
+  </data>
+  <data name="To disable, click here." xml:space="preserve">
+    <value>無効にするには、ここをクリックしてください。</value>
+  </data>
+  <data name="To use an authenticator app go through the following steps:" xml:space="preserve">
+    <value>認証アプリを使用するには、次の手順を実行してください：</value>
+  </data>
+  <data name="Two-factor authentication" xml:space="preserve">
+    <value>二要素認証</value>
+  </data>
+  <data name="Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to sign in. Learn more about two-factor authentication." xml:space="preserve">
+    <value>二要素認証は、パスワードだけではなく追加の要素を要求することでアカウントにさらにセキュリティレイヤーを追加します。二要素認証の詳細を確認してください。</value>
+  </data>
+  <data name="Two-factor methods" xml:space="preserve">
+    <value>二要素認証の方法</value>
+  </data>
+  <data name="Type your password to confirm changing your email address to" xml:space="preserve">
+    <value>メールアドレスをに変更することを確認するには、パスワードを入力してください。</value>
+  </data>
+  <data name="UOM" xml:space="preserve">
+    <value>単位</value>
+  </data>
+  <data name="Uom is required" xml:space="preserve">
+    <value>単位は必須です</value>
+  </data>
+  <data name="Use an authentication app or browser extension to get two-factor authentication codes when prompted." xml:space="preserve">
+    <value>二要素認証コードを取得するには、認証アプリまたはブラウザ拡張機能を使用してください。</value>
+  </data>
+  <data name="User name" xml:space="preserve">
+    <value>ユーザー名</value>
+  </data>
+  <data name="User name is required!" xml:space="preserve">
+    <value>ユーザー名は必須です！</value>
+  </data>
+  <data name="Verification Code" xml:space="preserve">
+    <value>確認コード</value>
+  </data>
+  <data name="Verify" xml:space="preserve">
+    <value>確認する</value>
+  </data>
+  <data name="Very practical, convenient and user-friendly library that has massively helped us in developing our applications. Great community as well!" xml:space="preserve">
+    <value>非常に実用的で便利、かつユーザーフレンドリーなライブラリで、私たちのアプリケーション開発に大いに役立っています。コミュニティも素晴らしいです！</value>
+  </data>
+  <data name="View all available products in our inventory." xml:space="preserve">
+    <value>在庫にあるすべての利用可能な製品を表示します。</value>
+  </data>
+  <data name="We've sent an email to the address you provided. Please check your inbox for a link to reset your password. If you don't see the email, be sure to check your spam or junk folder." xml:space="preserve">
+    <value>指定したアドレスにメールを送信しました。受信トレイでパスワードリセットのリンクを確認してください。メールが見つからない場合は、迷惑メールフォルダを確認してください。</value>
+  </data>
+  <data name="Write a message that goes with a kitten gif for a friend on a rough day" xml:space="preserve">
+    <value>困難な日を過ごしている友達に子猫のGIF付きメッセージを書く</value>
+  </data>
+  <data name="Write a text inviting my neighbors to a barbecue" xml:space="preserve">
+    <value>近所の人をバーベキューに招待するテキストを書く</value>
+  </data>
+  <data name="You must remove yourself, transfer ownership, or delete these organizations before you can delete your user." xml:space="preserve">
+    <value>ユーザーを削除する前に、自分自身を削除するか、所有権を移転するか、またはこれらの組織を削除する必要があります。</value>
+  </data>
+  <data name="external login" xml:space="preserve">
+    <value>外部ログイン</value>
+  </data>
+  <data name="user name is required" xml:space="preserve">
+    <value>ユーザー名が必須です</value>
+  </data>
+  <data name="Application" xml:space="preserve">
+    <value>アプリケーション</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>製品</value>
+  </data>
+  <data name="All Products" xml:space="preserve">
+    <value>すべての製品</value>
+  </data>
+  <data name="Stock Inquiry" xml:space="preserve">
+    <value>在庫問い合わせ</value>
+  </data>
+  <data name="Check product stock levels." xml:space="preserve">
+    <value>製品の在庫レベルを確認する。</value>
+  </data>
+  <data name="Best Sellers" xml:space="preserve">
+    <value>ベストセラー</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>注文</value>
+  </data>
+  <data name="Order Overview" xml:space="preserve">
+    <value>注文概要</value>
+  </data>
+  <data name="Overview of all customer orders." xml:space="preserve">
+    <value>すべての顧客注文の概要。</value>
+  </data>
+  <data name="Shipment Details" xml:space="preserve">
+    <value>発送詳細</value>
+  </data>
+  <data name="Track the shipment details of orders." xml:space="preserve">
+    <value>注文の発送詳細を追跡する。</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>レポート</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>概要</value>
+  </data>
+  <data name="View an overview of all reports." xml:space="preserve">
+    <value>すべてのレポートの概要を確認する。</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>統計</value>
+  </data>
+  <data name="Analyze detailed statistics for performance tracking." xml:space="preserve">
+    <value>パフォーマンス追跡のための詳細な統計を分析する。</value>
+  </data>
+  <data name="Activity Log" xml:space="preserve">
+    <value>アクティビティログ</value>
+  </data>
+  <data name="View the activity log for user actions." xml:space="preserve">
+    <value>ユーザー操作のアクティビティログを確認する。</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>ヘルプ</value>
+  </data>
+  <data name="Documentation" xml:space="preserve">
+    <value>ドキュメント</value>
+  </data>
+  <data name="Access the user and developer documentation." xml:space="preserve">
+    <value>ユーザーおよび開発者向けドキュメントにアクセスする。</value>
+  </data>
+  <data name="GitHub" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="Visit our GitHub repository." xml:space="preserve">
+    <value>GitHub リポジトリを訪問する。</value>
+  </data>
+  <data name="Blazor Aspire" xml:space="preserve">
+    <value>ブレイザー アスパイア</value>
+  </data>
+  <data name="Product is required." xml:space="preserve">
+    <value>製品が必要です</value>
+  </data>
+  <data name="Location is required." xml:space="preserve">
+    <value>場所が必要です</value>
+  </data>
+  <data name="Quantity must be greater than 0." xml:space="preserve">
+    <value>数量は0より大きくなければなりません</value>
+  </data>
+  <data name="Stock received successfully." xml:space="preserve">
+    <value>在庫を正常に受け取りました</value>
+  </data>
+  <data name="Stock dispatched successfully." xml:space="preserve">
+    <value>在庫を正常に出荷しました</value>
+  </data>
+  <data name="Commands" xml:space="preserve">
+    <value>コマンド</value>
+  </data>
+  <data name="Product Name" xml:space="preserve">
+    <value>製品名</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>場所</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="Receiving" xml:space="preserve">
+    <value>受け取り</value>
+  </data>
+  <data name="Stock receiving" xml:space="preserve">
+    <value>在庫受け取り</value>
+  </data>
+  <data name="Stock dispatching" xml:space="preserve">
+    <value>在庫出荷</value>
+  </data>
+</root>

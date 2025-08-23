@@ -1,0 +1,236 @@
+﻿@page "/products/index"
+@using CleanAspire.ClientApp.Pages.Products.Components
+@using CleanAspire.ClientApp.Services.Products
+
+@inject ProductServiceProxy ProductServiceProxy
+
+<PageTitle>@Title</PageTitle>
+
+<MudDataGrid T="ProductDto" Dense="true" Hover="true"
+@ref="_table"
+ServerData="@(ServerReload)"
+MultiSelection="true"
+SelectOnRowClick="false"
+RowClick="@(r=>Edit(r.Item))"
+RowStyleFunc="_rowStyleFunc"
+@bind-RowsPerPage="_defaultPageSize"
+@bind-SelectedItems="_selectedItems"
+@bind-SelectedItem="_currentDto">
+    <ToolBarContent>
+        <MudStack Row Spacing="0" Class="flex-grow-1" Justify="Justify.SpaceBetween">
+            <MudStack Row AlignItems="AlignItems.Start">
+                <MudIcon Icon="@Icons.Material.Filled.QrCodeScanner" Size="Size.Large" />
+                <MudStack Spacing="0">
+                    <MudText Typo="Typo.subtitle2">@L[Title]</MudText>
+                    <MudText Typo="Typo.body2">@L["View all available products in our inventory."]</MudText>
+                </MudStack>
+            </MudStack>
+            <MudStack Spacing="0" AlignItems="AlignItems.End">
+                <MudStack Row Spacing="1">
+                    <MudButton Size="Size.Small" OnClick="()=>_table.ReloadServerData()" Disabled="@_loading">
+                        <MudIcon Icon="@Icons.Material.Filled.Refresh" />
+                        <MudText>@L["Refresh"]</MudText>
+                    </MudButton>
+                    <MudButton Size="Size.Small" OnClick="New">
+                        <MudIcon Icon="@Icons.Material.Filled.Add" />
+                        <MudText>@L["New"]</MudText>
+                    </MudButton>
+                    <MudButton Size="Size.Small" Disabled="@(!_selectedItems.Any())" OnClick="Delete">
+                        <MudIcon Icon="@Icons.Material.Outlined.Delete" />
+                        <MudText>@L["Delete"]</MudText>
+                    </MudButton>
+                    <MudMenu TransformOrigin="Origin.BottomRight" AnchorOrigin="Origin.BottomRight" EndIcon="@Icons.Material.Filled.MoreVert" Label="@L["More"]">
+                        <MudMenuItem >
+                            <MudButton OnClick="OnExport">
+                                <MudText>@L["Export"]</MudText>
+                            </MudButton>
+                        </MudMenuItem>
+                        <MudMenuItem>
+                            <MudFileUpload T="IBrowserFile" FilesChanged="OnImportData" Accept=".csv">
+                                <ActivatorContent>
+                                    <MudButton>
+                                        <MudText>@L["Import"]</MudText>
+                                    </MudButton>
+                                </ActivatorContent>
+                            </MudFileUpload>
+                        </MudMenuItem>
+                    </MudMenu>
+                </MudStack>
+                <MudStack Row Spacing="1">
+                    <MudTextField T="string" ValueChanged="@(s => OnSearch(s))" Value="@_keywords" Placeholder="@L["Keywords"]" Adornment="Adornment.End"
+                    AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Small">
+                    </MudTextField>
+                </MudStack>
+            </MudStack>
+        </MudStack>
+    </ToolBarContent>
+    <Columns>
+        <SelectColumn ShowInFooter="false"></SelectColumn>
+        <PropertyColumn Title="@L["SKU"]" Property="x => x.Sku" />
+        <PropertyColumn Title="@L["Name"]" Property="x => x.Name" />
+        <PropertyColumn Title="@L["Category"]" Property="x => x.Category" />
+        <PropertyColumn Title="@L["UOM"]" Property="x => x.Uom" />
+        <PropertyColumn Title="@L["Price"]" Property="x => x.Price" Sortable="false" AggregateDefinition="_priceAggregation">
+            <CellTemplate>
+                @($"{context.Item.Price?.ToString("#,#")} {context.Item.Currency}")
+            </CellTemplate>
+        </PropertyColumn>
+    </Columns>
+    <PagerContent>
+        <MudDataGridPager T="ProductDto" />
+    </PagerContent>
+</MudDataGrid>
+
+@code {
+    public string Title = "Products";
+    private HashSet<ProductDto> _selectedItems = new();
+    private ProductDto _currentDto = new();
+    private MudDataGrid<ProductDto> _table = default!;
+    private int _defaultPageSize = 10;
+    private string _keywords = string.Empty;
+    private bool _loading = false;
+    AggregateDefinition<ProductDto> _priceAggregation = new AggregateDefinition<ProductDto>
+        {
+            Type = AggregateType.Sum,
+            NumberFormat = "#,#",
+            DisplayFormat = "Total amount is {value}"
+        };
+    private async Task<GridData<ProductDto>> ServerReload(GridState<ProductDto> state)
+    {
+        try
+        {
+            _loading = true;
+            var query = new ProductsWithPaginationQuery();
+            query.PageNumber = state.Page;
+            query.PageSize = state.PageSize;
+            query.Keywords = _keywords;
+            query.OrderBy = state.SortDefinitions.FirstOrDefault()?.SortBy ?? "Id";
+            query.SortDirection = state.SortDefinitions.FirstOrDefault()?.Descending ?? true ? SortDirection.Descending.ToString() : SortDirection.Ascending.ToString();
+            var result = await ProductServiceProxy.GetPaginatedProductsAsync(query);
+            return new GridData<ProductDto> { TotalItems = (int)result.TotalItems, Items = result.Items };
+        }
+        finally
+        {
+            _loading = false;
+        }
+    }
+    private Func<ProductDto, int, string> _rowStyleFunc => (x, i) =>
+    {
+        if (!string.IsNullOrEmpty(x.Id))
+            return "cursor:pointer";
+
+        return "";
+    };
+    private async Task OnSearch(string text)
+    {
+        _selectedItems = new HashSet<ProductDto>();
+        _keywords = text;
+        await _table.ReloadServerData();
+    }
+    private async Task New()
+    {
+        var parameters = new DialogParameters<NewProductDialog>();
+        await DialogServiceHelper.ShowDialogAsync<NewProductDialog>("New product", parameters, null,
+        async (state) =>
+        {
+            if (state is not null && !state.Canceled)
+            {
+                await _table.ReloadServerData();
+                _selectedItems = new();
+            }
+        });
+    }
+    private async Task Delete()
+    {
+        await DialogServiceHelper.ShowConfirmationDialog("delete confirm", L["Are you sure you want to delete the selected items?"], async () =>
+        {
+            if (_selectedItems.Any())
+            {
+                var ids = _selectedItems.Select(x => x.Id).ToList();
+                var result = await ProductServiceProxy.DeleteProductsAsync(ids);
+                result.Switch(
+                   async ok =>
+                    {
+                        await _table.ReloadServerData();
+                        _selectedItems = new();
+                        StateHasChanged();
+                        Snackbar.Add(L["Selected items have been deleted."], Severity.Success);
+                    },
+                    error =>
+                    {
+                        Snackbar.Add(error.Message ?? L["Failed to delete selected items."], Severity.Error);
+                    });
+
+            }
+
+        });
+    }
+    private void Edit(ProductDto dto)
+    {
+        Navigation.NavigateTo($"/products/edit/{dto.Id}");
+    }
+
+    private async Task OnExport()
+    {
+        var online = await OnlineStatusInterop.GetOnlineStatusAsync();
+        if (!online)
+        {
+            Snackbar.Add(L["You are offline. Please check your internet connection."], Severity.Error);
+            return;
+        }
+        try
+        {
+            var stream = await ApiClient.Products.Export.GetAsync(q => q.QueryParameters.Keywords = _keywords);
+            var fileName = $"products_{DateTime.Now:yyyyMMddHHmmss}.csv";
+            using var memoryStream = new MemoryStream();
+            await stream.CopyToAsync(memoryStream);
+            memoryStream.Position = 0;
+            using var streamRef = new DotNetStreamReference(stream: memoryStream);
+            await new DownloadFileInterop(JS).DownloadFileFromStream(fileName, streamRef);
+            Snackbar.Add(L["export successfully."], Severity.Success);
+        }
+        catch (ProblemDetails ex)
+        {
+            Snackbar.Add($"{ex.Detail}", Severity.Error);
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"{ex.Message}", Severity.Error);
+        }
+    }
+    private async Task OnImportData(IBrowserFile file)
+    {
+        var online = await OnlineStatusInterop.GetOnlineStatusAsync();
+        if (!online)
+        {
+            Snackbar.Add(L["You are offline. Please check your internet connection."], Severity.Error);
+            return;
+        }
+        try
+        {
+            var antiforgeryToken = await ApiClient.FileManagement.AntiforgeryToken.GetAsync();
+            var request = new MultipartBody();
+            request.AddOrReplacePart("overwrite", "text/plain", "false");
+            request.AddOrReplacePart("folder", "text/plain", $"{DateTime.UtcNow.ToString("yyyyMMdd")}");
+            request.AddOrReplacePart($"__{antiforgeryToken.HeaderName}", "text/plain", $"{antiforgeryToken.RequestToken}");
+            var filename = file.Name;
+            var stream = new MemoryStream();
+            await file.OpenReadStream(int.MaxValue).CopyToAsync(stream);
+            request.AddOrReplacePart($"files[0]", "application/octet-stream", stream, filename);
+            var response = await ApiClient.Products.Import.PostAsync(request);
+            if (response is not null && response.Any())
+            {
+                Snackbar.Add(L["Data imported successfully."], Severity.Success);
+                await _table.ReloadServerData();
+            }
+        }
+        catch (ProblemDetails ex)
+        {
+            Snackbar.Add($"{ex.Detail}", Severity.Error);
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"{ex.Message}", Severity.Error);
+        }
+    }
+}

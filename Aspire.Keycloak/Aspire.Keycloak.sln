@@ -1,0 +1,54 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keycloak.AppHost", "Aspire.Keycloak.AppHost\Keycloak.AppHost.csproj", "{ED86BA95-8EFC-4D31-A979-361A4D20EB8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keycloak.ServiceDefaults", "Aspire.Keycloak.ServiceDefaults\Keycloak.ServiceDefaults.csproj", "{B1DA85B5-F1DC-1FC8-945B-ED076B6B12D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keycloak.ApiService", "Aspire.Keycloak.ApiService\Keycloak.ApiService.csproj", "{CF266E6E-220C-2483-0815-E70D4EFAFB32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keycloak.Web", "Aspire.Keycloak.Web\Keycloak.Web.csproj", "{04109813-E29D-FFA8-06F2-5F652FE93F7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keycloak.Tests", "Aspire.Keycloak.Tests\Keycloak.Tests.csproj", "{CEEDBB53-99F5-354D-98D7-111F63059743}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED86BA95-8EFC-4D31-A979-361A4D20EB8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED86BA95-8EFC-4D31-A979-361A4D20EB8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED86BA95-8EFC-4D31-A979-361A4D20EB8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED86BA95-8EFC-4D31-A979-361A4D20EB8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1DA85B5-F1DC-1FC8-945B-ED076B6B12D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1DA85B5-F1DC-1FC8-945B-ED076B6B12D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1DA85B5-F1DC-1FC8-945B-ED076B6B12D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1DA85B5-F1DC-1FC8-945B-ED076B6B12D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF266E6E-220C-2483-0815-E70D4EFAFB32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF266E6E-220C-2483-0815-E70D4EFAFB32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF266E6E-220C-2483-0815-E70D4EFAFB32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF266E6E-220C-2483-0815-E70D4EFAFB32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04109813-E29D-FFA8-06F2-5F652FE93F7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04109813-E29D-FFA8-06F2-5F652FE93F7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04109813-E29D-FFA8-06F2-5F652FE93F7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04109813-E29D-FFA8-06F2-5F652FE93F7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEEDBB53-99F5-354D-98D7-111F63059743}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEEDBB53-99F5-354D-98D7-111F63059743}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEEDBB53-99F5-354D-98D7-111F63059743}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEEDBB53-99F5-354D-98D7-111F63059743}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3FA6930C-3F79-446A-AEE7-EE14001826DD}
+	EndGlobalSection
+EndGlobal
