@@ -4,7 +4,6 @@
 
 using CleanAspire.ClientApp;
 
-
 var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 
@@ -12,7 +11,6 @@ builder.AddServiceDefaults();
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
-
 
 builder.Services.AddCoreServices(builder.Configuration);
 builder.Services.AddHttpClients(builder.Configuration);

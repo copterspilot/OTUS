@@ -6,13 +6,28 @@ builder.AddServiceDefaults();
 // Add services to the container.
 builder.Services.AddProblemDetails();
 
+// Добавляем службу аутентификации в DI-контейнер.
+// Это основа для всех механизмов проверки подлинности (Authentication) в ASP.NET Core.
 builder.Services.AddAuthentication()
-                .AddKeycloakJwtBearer("keycloak", realm: "WeatherShop", options =>
-                {
-                    options.RequireHttpsMetadata = false;
-                    options.Audience = "weather.api";
-                });
 
+    // Добавляем схему аутентификации на основе JWT Bearer токенов, получаемых от Keycloak.
+    // "keycloak" — имя схемы (может быть любым, но должно совпадать с тем, что указано в Authorization).
+    // realm: "WeatherShop" — указывает, из какого realm Keycloak будут приходить токены.
+    .AddKeycloakJwtBearer("keycloak", realm: "WeatherShop", options =>
+        {
+            // Отключаем требование HTTPS для получения метаданных (например, JWKS).
+            // ⚠️ Только для разработки! В продакшене должно быть true.
+            // Позволяет работать с Keycloak по HTTP (например, локально).
+            options.RequireHttpsMetadata = false;
+
+            // Указываем, какую аудиторию (audience) ожидаем в JWT-токене.
+            // Токен будет считаться валидным, только если в claim "aud" будет значение "weather.api".
+            // Это обеспечивает, что токен предназначен именно для этого API.
+            options.Audience = "weather.api";
+        }); // Завершение настройки AddKeycloakJwtBearer
+
+// Добавляем службу авторизации и включаем возможность настройки политик авторизации.
+// Это позволяет использовать [Authorize] атрибуты и Policy-based авторизацию.
 builder.Services.AddAuthorizationBuilder();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
